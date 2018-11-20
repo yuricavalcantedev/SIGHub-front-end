@@ -6,6 +6,18 @@
     border: solid 0.1px blue;
     height: 600px;
     text-align: center;    
+    margin-top: 15px;
+}
+
+.divInitNewCatalog{
+    position: relative;
+    width: 80%;
+    margin: 0 auto;
+    background: white;
+    border: solid 0.1px blue;
+    height: 600px;
+    text-align: center;    
+    margin-top: 15px;
 }
 
 .mySideBar{
@@ -16,8 +28,39 @@
     width: 150px;
     height: 150px;
     margin-top: 100px;
+    margin-right: 10px;
 }
 
 .fabNewSoftgoal{
-     margin-top: 80px;
+     margin: 0 auto;
+     margin-top: 100px;
+}
+
+.buttonsHelperDiv{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    margin-right: 125px;
+}
+
+.buttonsHelper{    
+    margin: 10px;
+}
+
+.divButtonCriarSoftgoal{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttonCriarSoftgoal{
+    width: 100%;
+    margin-top: 20px;
+}
+
+.fabAddSoftgoal{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 25px;
 }

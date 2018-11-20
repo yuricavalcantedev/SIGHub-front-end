@@ -18,34 +18,135 @@
 
 <body onload="init()">
 
-    <nav id="myNav"class="default" role="navigation">
+    <nav>
         <div class="nav-wrapper">
-            <a href="#!" class="brand-logo center">Brand</a>
-            <a href="#" data-activates="mobile-demo" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
-            <ul class="right hide-on-med-and-down">
-                <li><a href="#">Login</a></li>
-                <li><a class="waves-effect green waves-light btn">Sign up</a></li>
+            <a href="#" class="brand-logo center">Logo</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li>
+                    <a href="sass.html">Sass</a>
+                </li>
+                <li>
+                    <a href="badges.html">Components</a>
+                </li>
+                <li>
+                    <a href="collapsible.html">JavaScript</a>
+                </li>
             </ul>
-        </div>      
+        </div>
     </nav>
 
-    <div id="divInitNewCatalog" class="divDiagramSIG">
+    <ul id="slide-out" class="side-nav mySideBar">
+        <li>
+            <a href="#!">Novo Softgoal</a>
+        </li>
+
+        <div class="row">
+            <form class="col s12">
+                <div class="row">
+                    <div id="parentDiv" class="input-field col s12">
+                        <input placeholder="" id="parent_softgoal" type="text" class="validate">
+                        <label for="parent_softgoal">Parent *</label>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <input placeholder="" id="name_softgoal" type="text" class="validate">
+                        <label for="name_softgoal">Nome *</label>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <select id="selectNFRType">
+                            <option value="1" selected>NFR Softgoal</option>
+                            <option value="2">Operacionalização</option>
+                            <option value="3">Claim Softgoal</option>
+                        </select>
+                        <label>Tipo de Softgoal *</label>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <select id="selectContributionType">
+                            <option value="0" selected></option>
+                            <option value="1">AND</option>
+                            <option value="2">OR</option>
+                        </select>
+                        <label>Contribuição</label>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <select id="selectContributionTypeCatalog">
+                            <option value="0" selected></option>
+                            <option value="1">BREAK</option>
+                            <option value="2">HURT</option>
+                            <option value="3">UNKNOWN</option>
+                            <option value="4">HELP</option>
+                            <option value="5">SOME (-)</option>
+                            <option value="6">SOME (+)</option>
+                        </select>
+                        <label>Tipo de Contribuição (catálogo)</label>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <select id="selectEvaluationProcedure">
+                            <option value="0" selected></option>
+                            <option value="1">DENIED</option>
+                            <option value="2">WEAKLY_DENIED</option>
+                            <option value="3">UNDECIDED</option>
+                            <option value="4">WEAKLY_SATISFICED</option>
+                            <option value="5">SATISFICED</option>
+                            <option value="6">CONFLICT</option>
+                        </select>
+                        <label>Tipo de Avaliação</label>
+                    </div>
+
+                    <div class="col s12">
+
+                        <label>Prioridade?</label>
+                        <br>
+                        <input class="with-gap " name="isPriorityGroup" type="radio" id="rbPrioritySim" />
+                        <label for="rbPrioritySim">Sim</label>
+
+                        <input class="with-gap" name="isPriorityGroup" type="radio" id="rbPriorityNao" />
+                        <label for="rbPriorityNao">Não</label>
+                    </div>
+
+                    <div class="col s12 divButtonCriarSoftgoal">
+                        <a class="waves-effect waves-light green btn buttonCriarSoftgoal">Criar</a>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </ul>
+
+    <div id="divInitNewCatalog" class="divInitNewCatalog">
+
         <img src="../imgs/icon_search.png" class="imageNoSoftgoals" alt="">
         <div class="divShowMsgNoSoftgoal">
-            <p>Você ainda não começou a criar seu catálogo.</p>
+            <p>Você ainda não começou a criar seu SIG.</p>
             <p>Aperte no botão "+" para começar a criar um.</p>
         </div>
-        <a id="btStartCatalog" data-target="slide-out" class="btn-floating btn-large waves-effect waves-light red sidenav-trigger show-on-large fabNewSoftgoal"><i class="material-icons">add</i></a>
+        <a id="btStartCatalog" data-activates="slide-out" class="button-collapse btn-floating btn-large waves-effect waves-light green sidenav-trigger show-on-large fabNewSoftgoal">
+            <i class="material-icons">add</i>
+        </a>
     </div>
 
+
+
+    <!--Div containing the goJS graph-->
     <div id="myCatalogSIG" class="divDiagramSIG">
 
     </div>
-    <p>
-        <button id="zoomToFit">Zoom to Fit</button>
-        <button id="centerRoot">Center on root</button>
-    </p>
-    <button id="btNewSIG">Criar novo diagrama</button>
+    <div class="action-btn fabAddSoftgoal">
+        <a id="fabAddSoftgoal2" data-activates="slide-out" class="button-collapse sidenav-trigger show-on-large btn-floating btn-large green">
+            <i class="large material-icons">add</i>
+        </a>
+    </div>
+    <div class="buttonsHelperDiv">
+
+        <a id="zoomToFit" href="" class="waves-effect waves-light blue btn buttonsHelper">
+            <i class="material-icons left">crop_landscape</i>Enquadrar</a>
+        <a id="centerRoot" href="" class="waves-effect waves-light blue btn buttonsHelper">
+            <i class="material-icons left">filter_drama</i>Centralizar</a>
+    </div>
 
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <!-- Compiled and minified JavaScript -->
@@ -53,33 +154,118 @@
     </script>
 
     <script>
+
         $('.button-collapse').sideNav({
             menuWidth: 300, // Default is 240
             edge: 'right', // Choose the horizontal origin
             closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
         }
         );
-    </script>
 
-    <script src="../js/go.js"></script>
-    <script src="../js/commomFunctions.js"></script>
-    <script src="../js/newSIG.js"></script>
-    <script>
+        // jQuery command needed to select works (materialize)
+        $('select').material_select();
 
-        let myCatalogSIG = document.getElementById("myCatalogSIG");
-        myCatalogSIG.hidden = true;
-        
         let divInitNewCatalog = document.getElementById("divInitNewCatalog");
+        let myCatalogSIG = document.getElementById("myCatalogSIG");
+        let fabNewCatalog = document.getElementById("btStartCatalog");
+        let divShowMsgNoSoftgoal = document.querySelector(".divShowMsgNoSoftgoal");
+        let buttonsHelperDiv = document.querySelector(".buttonsHelperDiv");
+        let inputParentDiv = document.getElementById("parentDiv");
+        let fabAddSoftgoal = document.querySelector(".fabAddSoftgoal");
+        let fabAddSoftgoal2 = document.getElementById("fabAddSoftgoal2");
 
-        let btStartCatalog = document.getElementById("btStartCatalog");
-        btStartCatalog.addEventListener("click", function () {
+        myCatalogSIG.hidden = true;
+        buttonsHelperDiv.hidden = true;
+        fabAddSoftgoal.hidden = true;
+
+        fabNewCatalog.addEventListener("click", function () {
+
             divInitNewCatalog.hidden = true;
+            fabNewCatalog.hidden = true;
+            divShowMsgNoSoftgoal.hidden = true;
+            inputParentDiv.hidden = true;
+
             myCatalogSIG.hidden = false;
-        
+
 
         });
 
+        let btCreateNewSoftgoal = document.querySelector(".buttonCriarSoftgoal");
+        btCreateNewSoftgoal.addEventListener("click", function(){
+
+            let inputParentDiv = document.getElementById("parentDiv");
+            let inputParent = document.getElementById("parent_softgoal");
+            let inputName = document.getElementById("name_softgoal");
+            let selectNFRType = document.getElementById("selectNFRType");
+            let selectContributionType = document.getElementById("selectContributionType");
+            let selectContributionTypeCatalog = document.getElementById("selectContributionTypeCatalog");
+            let selectEvaluationProcedure = document.getElementById("selectEvaluationProcedure");
+            let radioButtonPriority = document.querySelectorAll(".with-gap");
+
+            let key;
+            let parent;
+            if(softgoalClickedNow == null){
+                key = 1;
+                parent = inputParent.value;
+            }else{
+                key = softgoalClickedNow.key + 1;                
+                parent = softgoalClickedNow.key;
+            }
+            
+            //lembrar de colocar um outro select que é alimentado pelos softgoals que estão no SIG
+            //dessa forma, quando for adicionar o SIG, o valor parent já vai ser Number e não String como está sendo agora.
+
+            let name = inputName.value;
+            let nfrType = selectNFRType.value;
+            let contributionType = selectContributionType.value;
+            let contributionTypeCatalog = selectContributionTypeCatalog.value;
+            let evaluationProcedure = selectEvaluationProcedure.value;
+            let isPriority;
+
+            if (radioButtonPriority[0].checked)
+                isPriority = true;
+            else
+                isPriority = false;
+
+            let softgoal = new Object();
+
+            softgoal.key = key;
+            softgoal.parent = parent;
+            softgoal.name = name;
+            softgoal.nfrType = nfrType;
+            softgoal.contributionType = contributionType;
+            softgoal.contributionTypeCatalog = contributionTypeCatalog;
+            softgoal.evaluationProcedure = evaluationProcedure;
+            softgoal.priority = isPriority;
+
+            addSoftgoal(softgoal);
+
+            buttonsHelperDiv.hidden = false;
+
+            //clean the fields TODO
+            inputName.value = "";
+            inputParent.value = "";
+
+        });
+
+        fabAddSoftgoal2.addEventListener("click", function(){
+            
+            let inputParent = document.getElementById("parent_softgoal");
+            inputParent.value = softgoalClickedNow.name;
+            inputParentDiv.hidden = false;
+            buttonsHelperDiv.hidden = false;
+
+
+        });
+
+
     </script>
+
+
+<script src="../js/go.js"></script>
+<script src="../js/commomFunctions.js"></script>
+<script src="../js/newSIG.js"></script>
+
 </body>
 
 </html>

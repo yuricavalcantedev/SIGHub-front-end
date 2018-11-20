@@ -1,6 +1,9 @@
 let nodeDataArray = [];
-let linkDataArray = [];
 let myDiagram = null;
+
+//global variable to get the key of the softgoal was clicked now
+// to be get on the html file to set as a parent key of the new softgoal
+let softgoalClickedNow = null; 
 let $ = go.GraphObject.make;  // for conciseness in defining templates
 
 function init() {
@@ -20,7 +23,7 @@ function init() {
 
     myDiagram.nodeTemplate =
         $(go.Node, "Auto", {
-            doubleClick: addSoftgoal
+            click: setKeyParentGlobally
         },
             $(go.Shape, "Rectangle", { stroke: "white", fill: "white" }),
             $(go.Panel, "Table",
@@ -72,10 +75,6 @@ function init() {
                 new go.Binding("text", "contributionType", isOrContributionType))
         );
         
-
-    let btNewSIG = document.getElementById("btNewSIG");
-    btNewSIG.addEventListener("click", addSoftgoal);
-
     document.getElementById('zoomToFit').addEventListener('click', function () {
         myDiagram.zoomToFit();
     });
@@ -87,24 +86,9 @@ function init() {
 }
 
 
-function addSoftgoal(e, obj) {
+function addSoftgoal(softgoal) {
 
-    //chamar o modal aqui
-    let input = prompt("Crie um novo softgoal").split(',');
-    let softgoal = new Object();
-
-    //1,Facibility,0,true,1,2,2,4
-    //id,name,parent,priority,nfrType,contributionType,contributionTypeCatalog, evaluationProcedure
-
-    softgoal.key = input[0];
-    softgoal.name = input[1];
-    softgoal.parent = input[2];
-    softgoal.priority = input[3];
-    softgoal.nfrType = input[4];
-    softgoal.contributionType = input[5];
-    softgoal.contributionTypeCatalog = input[6];
-    softgoal.evaluationProcedure = input[7];
-
+    //id(key),name,parent,priority,nfrType,contributionType,contributionTypeCatalog, evaluationProcedure
     myDiagram.startTransaction("Adding new softgoal");
 
     nodeDataArray.push(softgoal);
@@ -114,3 +98,17 @@ function addSoftgoal(e, obj) {
 
 };
 
+
+function showSideNavAddNewSoftgoal(e, node){
+
+    let fabAddSoftgoal = document.querySelector(".fabAddSoftgoal");
+    fabAddSoftgoal.hidden = false;
+
+}   
+
+function setKeyParentGlobally(e, node){
+    softgoalClickedNow = node.data;
+
+    let fabAddSoftgoal = document.querySelector(".fabAddSoftgoal");
+    fabAddSoftgoal.hidden = false;
+}
