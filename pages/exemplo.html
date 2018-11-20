@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="../css/create_new_sig.css" rel="stylesheet">
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <title>Document</title>
+
+</head>
+
+<body onload="init()">
+
+    <nav id="myNav"class="default" role="navigation">
+        <div class="nav-wrapper">
+            <a href="#!" class="brand-logo center">Brand</a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="#">Login</a></li>
+                <li><a class="waves-effect green waves-light btn">Sign up</a></li>
+            </ul>
+        </div>      
+    </nav>
+
+    <div id="divInitNewCatalog" class="divDiagramSIG">
+        <img src="../imgs/icon_search.png" class="imageNoSoftgoals" alt="">
+        <div class="divShowMsgNoSoftgoal">
+            <p>Você ainda não começou a criar seu catálogo.</p>
+            <p>Aperte no botão "+" para começar a criar um.</p>
+        </div>
+        <a id="btStartCatalog" data-target="slide-out" class="btn-floating btn-large waves-effect waves-light red sidenav-trigger show-on-large fabNewSoftgoal"><i class="material-icons">add</i></a>
+    </div>
+
+    <div id="myCatalogSIG" class="divDiagramSIG">
+
+    </div>
+    <p>
+        <button id="zoomToFit">Zoom to Fit</button>
+        <button id="centerRoot">Center on root</button>
+    </p>
+    <button id="btNewSIG">Criar novo diagrama</button>
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js">
+    </script>
+
+    <script>
+        $('.button-collapse').sideNav({
+            menuWidth: 300, // Default is 240
+            edge: 'right', // Choose the horizontal origin
+            closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+        }
+        );
+    </script>
+
+    <script src="../js/go.js"></script>
+    <script src="../js/commomFunctions.js"></script>
+    <script src="../js/newSIG.js"></script>
+    <script>
+
+        let myCatalogSIG = document.getElementById("myCatalogSIG");
+        myCatalogSIG.hidden = true;
+        
+        let divInitNewCatalog = document.getElementById("divInitNewCatalog");
+
+        let btStartCatalog = document.getElementById("btStartCatalog");
+        btStartCatalog.addEventListener("click", function () {
+            divInitNewCatalog.hidden = true;
+            myCatalogSIG.hidden = false;
+        
+
+        });
+
+    </script>
+</body>
+
+</html>
