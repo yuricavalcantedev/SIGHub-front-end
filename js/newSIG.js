@@ -3,11 +3,11 @@ let myDiagram = null;
 
 //global variable to get the key of the softgoal was clicked now
 // to be get on the html file to set as a parent key of the new softgoal
-let softgoalClickedNow = null; 
+let softgoalClickedNow = null;
 let $ = go.GraphObject.make;  // for conciseness in defining templates
 
 function init() {
-    
+
     myDiagram =
         $(go.Diagram, "myCatalogSIG",  // must be the ID or reference to div
             {
@@ -51,7 +51,7 @@ function init() {
             )
         );
 
-        myDiagram.linkTemplate =
+    myDiagram.linkTemplate =
         $(go.Link,  // the whole link panel
             { routing: go.Link.Orthogonal, corner: 2, selectable: true, adjusting: go.Link.Stretch, reshapable: true },
             $(go.Shape,
@@ -66,23 +66,14 @@ function init() {
                 // editing the text automatically updates the model data
                 new go.Binding("text", "contributionTypeCatalog", setContributionTypeCatalog).makeTwoWay()),
             $(go.TextBlock, {
-                    segmentIndex: 3, segmentFraction: 0.2, textAlign: "center"
-                },
+                segmentIndex: 3, segmentFraction: 0.2, textAlign: "center"
+            },
                 new go.Binding("text", "contributionType", isAndContributionType)),
             $(go.TextBlock, {
                 segmentIndex: 3, segmentFraction: 0.4, textAlign: "center"
-                },
+            },
                 new go.Binding("text", "contributionType", isOrContributionType))
         );
-        
-    document.getElementById('zoomToFit').addEventListener('click', function () {
-        myDiagram.zoomToFit();
-    });
-
-    document.getElementById('centerRoot').addEventListener('click', function () {
-        myDiagram.scale = 1;
-        myDiagram.scrollToRect(myDiagram.findNodeForKey(0).actualBounds);
-    });
 }
 
 
@@ -91,22 +82,27 @@ function addSoftgoal(softgoal) {
     //id(key),name,parent,priority,nfrType,contributionType,contributionTypeCatalog, evaluationProcedure
     myDiagram.startTransaction("Adding new softgoal");
 
-    nodeDataArray.push(softgoal);
+    let node = myDiagram.model.findNodeDataForKey(softgoal.parent);
 
+    if (node) {
+        node.softgoalList.push(softgoal);        
+    }
+
+    nodeDataArray.push(softgoal);
     myDiagram.commitTransaction("Softgoal added");
     myDiagram.model = new go.TreeModel(nodeDataArray);
 
 };
 
 
-function showSideNavAddNewSoftgoal(e, node){
+function showSideNavAddNewSoftgoal(e, node) {
 
     let fabAddSoftgoal = document.querySelector(".fabAddSoftgoal");
     fabAddSoftgoal.hidden = false;
 
-}   
+}
 
-function setKeyParentGlobally(e, node){
+function setKeyParentGlobally(e, node) {
     softgoalClickedNow = node.data;
 
     let fabAddSoftgoal = document.querySelector(".fabAddSoftgoal");

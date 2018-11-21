@@ -19,7 +19,7 @@
 <body onload="init()">
 
     <nav>
-        <div class="nav-wrapper">
+        <div class="nav-wrapper red">
             <a href="#" class="brand-logo center">Logo</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li>
@@ -129,17 +129,81 @@
         </a>
     </div>
 
-
-
     <!--Div containing the goJS graph-->
     <div id="myCatalogSIG" class="divDiagramSIG">
 
     </div>
-    <div class="action-btn fabAddSoftgoal">
+
+    <div id="modalCatalog" class="modal">
+        <div class="modal-content">
+            <h4>Cadastrar Catálogo</h4>
+            <div class="divider"></div>
+            <div class="row">
+                <form id="formNewCatalog" action="" class="col s12">
+                    <div class="input-field col s12">
+                        <input placeholder="Ex: João, joao@gmail.com" id="owner_catalog" type="text" class="validate">
+                        <label for="owner_catalog">Criador *</label>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <input placeholder="Ex: João, joao@gmail.com; Maria, maria@gmail.com;" id="authors_catalog"
+                            type="text" class="validate">
+                        <label for="authors_catalog">Lista de Autores *</label>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <input placeholder="Ex: Sua referência" id="reference_catalog" type="text" class="validate">
+                        <label for="reference_catalog">Referência</label>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <input placeholder="Ex: 2018" id="year_catalog" type="text" class="validate">
+                        <label for="year_catalog">Ano *</label>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <div id="chips_applicationDomain_catalog" class="chips"></div>
+                        <label for="chips_applicationDomain_catalog">Domínio de Aplicação * (pode ser vários)</label>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <div id="chips_area_catalog" class="chips"></div>
+                        <label for="chips_area_catalog">Area * (pode ser vários)</label>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <textarea id="description_catalog" class="materialize-textarea"></textarea>
+                        <label for="description_catalog">Descrição</label>
+                    </div>
+
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-action modal-close waves-effect waves-light red btn-flat white-text">Fechar</a>
+                        <input type="submit" class="modal-action modal-close waves-effect waves-light green btn-flat white-text"
+                            value="Enviar">
+                    </div>
+
+                </form>
+
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="action-btn fabAddSoftgoal fixed-action-btn">
         <a id="fabAddSoftgoal2" data-activates="slide-out" class="button-collapse sidenav-trigger show-on-large btn-floating btn-large green">
             <i class="large material-icons">add</i>
         </a>
+        <ul>
+            <!-- Modal Trigger -->
+            <li><a class="btn-floating blue waves-effect waves-light btn modal-trigger" href="#modalCatalog"><i class="material-icons">cloud_done</i></a></li>
+            <li><a class="btn-floating yellow"><i class="material-icons">edit</i></a></li>
+            <li><a class="btn-floating red darken-1"><i class="material-icons">delete</i></a></li>
+        </ul>
     </div>
+
+    <!--
+        
     <div class="buttonsHelperDiv">
 
         <a id="zoomToFit" href="" class="waves-effect waves-light blue btn buttonsHelper">
@@ -148,6 +212,7 @@
             <i class="material-icons left">filter_drama</i>Centralizar</a>
     </div>
 
+    -->
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js">
@@ -165,17 +230,24 @@
         // jQuery command needed to select works (materialize)
         $('select').material_select();
 
+        $('.tooltipped').tooltip({ delay: 50 });
+
+        $('.modal').modal();
+
+        $('.chips').material_chip();
+
+        $('.sidenav').sidenav();
+
         let divInitNewCatalog = document.getElementById("divInitNewCatalog");
         let myCatalogSIG = document.getElementById("myCatalogSIG");
         let fabNewCatalog = document.getElementById("btStartCatalog");
         let divShowMsgNoSoftgoal = document.querySelector(".divShowMsgNoSoftgoal");
-        let buttonsHelperDiv = document.querySelector(".buttonsHelperDiv");
         let inputParentDiv = document.getElementById("parentDiv");
         let fabAddSoftgoal = document.querySelector(".fabAddSoftgoal");
         let fabAddSoftgoal2 = document.getElementById("fabAddSoftgoal2");
+        let formNewCatalog = document.getElementById("formNewCatalog");
 
         myCatalogSIG.hidden = true;
-        buttonsHelperDiv.hidden = true;
         fabAddSoftgoal.hidden = true;
 
         fabNewCatalog.addEventListener("click", function () {
@@ -191,7 +263,7 @@
         });
 
         let btCreateNewSoftgoal = document.querySelector(".buttonCriarSoftgoal");
-        btCreateNewSoftgoal.addEventListener("click", function(){
+        btCreateNewSoftgoal.addEventListener("click", function () {
 
             let inputParentDiv = document.getElementById("parentDiv");
             let inputParent = document.getElementById("parent_softgoal");
@@ -204,14 +276,14 @@
 
             let key;
             let parent;
-            if(softgoalClickedNow == null){
+            if (softgoalClickedNow == null) {
                 key = 1;
                 parent = inputParent.value;
-            }else{
-                key = softgoalClickedNow.key + 1;                
+            } else {
+                key = softgoalClickedNow.key + 1;
                 parent = softgoalClickedNow.key;
             }
-            
+
             //lembrar de colocar um outro select que é alimentado pelos softgoals que estão no SIG
             //dessa forma, quando for adicionar o SIG, o valor parent já vai ser Number e não String como está sendo agora.
 
@@ -237,10 +309,9 @@
             softgoal.contributionTypeCatalog = contributionTypeCatalog;
             softgoal.evaluationProcedure = evaluationProcedure;
             softgoal.priority = isPriority;
+            softgoal.softgoalList = [];
 
             addSoftgoal(softgoal);
-
-            buttonsHelperDiv.hidden = false;
 
             //clean the fields TODO
             inputName.value = "";
@@ -248,23 +319,112 @@
 
         });
 
-        fabAddSoftgoal2.addEventListener("click", function(){
-            
+        fabAddSoftgoal2.addEventListener("click", function () {
+
             let inputParent = document.getElementById("parent_softgoal");
             inputParent.value = softgoalClickedNow.name;
             inputParentDiv.hidden = false;
-            buttonsHelperDiv.hidden = false;
-
 
         });
 
+        formNewCatalog.addEventListener("submit", function (e, obj) {
 
+            let inputOwner = document.getElementById("owner_catalog").value;
+            let inputAuthors = document.getElementById("authors_catalog").value;
+            let reference = document.getElementById("reference_catalog").value;
+            let year = document.getElementById("year_catalog").value;
+            let inputApplicationDomain = document.getElementById("chips_applicationDomain_catalog").childNodes;
+            let inputArea = document.getElementById("chips_area_catalog").childNodes;
+            let description = document.getElementById("description_catalog").value;
+
+            let applicationDomain = getApplicationDomainsFromChip(inputApplicationDomain);
+            let area = getAreasFromChip(inputArea);
+            let owner = new Object();
+            let infoOwner = inputOwner.split(",");
+            owner.name = infoOwner[0];
+            owner.email = infoOwner[1];
+
+            let catalog = new Object();
+            catalog.id = null;
+            catalog.authors = getAuthors(inputAuthors);
+            catalog.reference = reference;
+            catalog.year = year;
+            catalog.applicationDomainList = getApplicationDomainsFromChip(inputApplicationDomain);
+            catalog.owner = owner;
+            catalog.description = description;
+            catalog.softgoalMain = nodeDataArray[0];
+            catalog.areasList = getAreasFromChip(inputArea);
+
+            sendNewCatalog(catalog);
+        });
+
+        function getApplicationDomainsFromChip(chipsApplicationDomain) {
+
+            let arrayApplicationDomain = [];
+
+            for (let i = 0; i < chipsApplicationDomain.length - 1; i++) {
+
+                let applicationDomain = new Object();
+                applicationDomain.text = chipsApplicationDomain[i].textContent.replace("close", "");
+                arrayApplicationDomain.push(applicationDomain);
+            }
+
+            return arrayApplicationDomain;
+        };
+
+        function getAreasFromChip(chipsAreas) {
+
+            let arrayArea = [];
+
+            for (let i = 0; i < chipsAreas.length - 1; i++) {
+
+                let area = new Object();
+                area.text = chipsAreas[i].textContent.replace("close", "");
+                arrayArea.push(area);
+            }
+
+            return arrayArea;
+        };
+
+        function getAuthors(inputAuthors) {
+
+            inputAuthors = inputAuthors.split(";");
+            let arrayAuthors = [];
+
+            for (let i = 0; i < inputAuthors.length; i++) {
+
+                let eachAuthor = inputAuthors[i].split(",");
+
+                let person = new Object();
+                person.name = eachAuthor[0];
+                person.email = eachAuthor[1];
+                arrayAuthors.push(person);
+            }
+
+            return arrayAuthors;
+        }
+
+        function sendNewCatalog(catalog) {
+
+            let url = "https://localhost:8080/catalogs"
+            let xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (xhttp.readyState == 4){
+                    console.log("Deu certo");
+                    let x = xhttp.responseText;
+                    console.log(x);
+                }
+            };
+
+            xhttp.open("POST", url, true);
+            xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhttp.send(catalog);
+        }
     </script>
 
-
-<script src="../js/go.js"></script>
-<script src="../js/commomFunctions.js"></script>
-<script src="../js/newSIG.js"></script>
+    <script src="../js/go.js"></script>
+    <script src="../js/commomFunctions.js"></script>
+    <script src="../js/newSIG.js"></script>
 
 </body>
 

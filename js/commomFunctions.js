@@ -61,7 +61,7 @@ function setEvaluationProcedure(evaluationProcedure) {
         return "";
 }
 
-
+//dar um jeito nisso aqui
 function isAndContributionType(contributionType) {
     if (contributionType == 0)
         return "";
