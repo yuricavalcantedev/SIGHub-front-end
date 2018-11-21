@@ -21,15 +21,15 @@
     <nav>
         <div class="nav-wrapper red">
             <a href="#" class="brand-logo center">Logo</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
                 <li>
-                    <a href="sass.html">Sass</a>
+                    <a href="#">Home</a>
                 </li>
                 <li>
-                    <a href="badges.html">Components</a>
+                    <a href="#">Visualizar Catálogos</a>
                 </li>
-                <li>
-                    <a href="collapsible.html">JavaScript</a>
+                <li class="active">
+                    <a href="#">Criar Catálogos</a>
                 </li>
             </ul>
         </div>
@@ -44,12 +44,12 @@
             <form class="col s12">
                 <div class="row">
                     <div id="parentDiv" class="input-field col s12">
-                        <input placeholder="" id="parent_softgoal" type="text" class="validate">
+                        <input placeholder="" id="parent_softgoal" type="text" class="validate" >
                         <label for="parent_softgoal">Parent *</label>
                     </div>
 
                     <div class="input-field col s12">
-                        <input placeholder="" id="name_softgoal" type="text" class="validate">
+                        <input placeholder="" id="name_softgoal" type="text" class="validate" >
                         <label for="name_softgoal">Nome *</label>
                     </div>
 
@@ -104,7 +104,7 @@
                         <input class="with-gap " name="isPriorityGroup" type="radio" id="rbPrioritySim" />
                         <label for="rbPrioritySim">Sim</label>
 
-                        <input class="with-gap" name="isPriorityGroup" type="radio" id="rbPriorityNao" />
+                        <input class="with-gap" name="isPriorityGroup" type="radio" checked="true" id="rbPriorityNao" />
                         <label for="rbPriorityNao">Não</label>
                     </div>
 
@@ -141,45 +141,46 @@
             <div class="row">
                 <form id="formNewCatalog" action="" class="col s12">
                     <div class="input-field col s12">
-                        <input placeholder="Ex: João, joao@gmail.com" id="owner_catalog" type="text" class="validate">
+                        <input placeholder="Ex: João, joao@gmail.com" id="owner_catalog" type="text" class="validate" required="" >
                         <label for="owner_catalog">Criador *</label>
                     </div>
 
                     <div class="input-field col s12">
-                        <input placeholder="Ex: João, joao@gmail.com; Maria, maria@gmail.com;" id="authors_catalog"
-                            type="text" class="validate">
+                        <input placeholder="Ex: João, joao@gmail.com; Maria, maria@gmail.com;" id="authors_catalog" type="text" class="validate"
+                            required="">
                         <label for="authors_catalog">Lista de Autores *</label>
                     </div>
 
                     <div class="input-field col s12">
-                        <input placeholder="Ex: Sua referência" id="reference_catalog" type="text" class="validate">
-                        <label for="reference_catalog">Referência</label>
+                        <input placeholder="Ex: Sua referência" id="reference_catalog" type="text" class="validate" required="">
+                        <label for="reference_catalog">Referência *</label>
                     </div>
 
                     <div class="input-field col s12">
-                        <input placeholder="Ex: 2018" id="year_catalog" type="text" class="validate">
+                        <input placeholder="Ex: 2018" id="year_catalog" type="text" class="validate" required="">
                         <label for="year_catalog">Ano *</label>
                     </div>
 
                     <div class="input-field col s12">
-                        <div id="chips_applicationDomain_catalog" class="chips"></div>
+                        <div id="chips_applicationDomain_catalog" class="chips validate" required=""></div>
                         <label for="chips_applicationDomain_catalog">Domínio de Aplicação * (pode ser vários)</label>
                     </div>
 
                     <div class="input-field col s12">
-                        <div id="chips_area_catalog" class="chips"></div>
+                        <div id="chips_area_catalog" class="chips validate" required=""></div>
                         <label for="chips_area_catalog">Area * (pode ser vários)</label>
                     </div>
 
                     <div class="input-field col s12">
-                        <textarea id="description_catalog" class="materialize-textarea"></textarea>
+                        <textarea id="description_catalog" class="materialize-textarea "></textarea>
                         <label for="description_catalog">Descrição</label>
                     </div>
 
                     <div class="modal-footer">
-                        <a href="#!" class="modal-action modal-close waves-effect waves-light red btn-flat white-text">Fechar</a>
-                        <input type="submit" class="modal-action modal-close waves-effect waves-light green btn-flat white-text"
-                            value="Enviar">
+                        <div class="input-field col s12">
+                            <a href="#!" class="modal-action modal-close waves-effect waves-light red btn-flat white-text">Fechar</a>
+                            <input type="submit" name="action" class="modal-action waves-effect waves-light green btn-flat white-text" value="Enviar">
+                        </div>
                     </div>
 
                 </form>
@@ -196,9 +197,21 @@
         </a>
         <ul>
             <!-- Modal Trigger -->
-            <li><a class="btn-floating blue waves-effect waves-light btn modal-trigger" href="#modalCatalog"><i class="material-icons">cloud_done</i></a></li>
-            <li><a class="btn-floating yellow"><i class="material-icons">edit</i></a></li>
-            <li><a class="btn-floating red darken-1"><i class="material-icons">delete</i></a></li>
+            <li>
+                <a class="btn-floating blue waves-effect waves-light btn modal-trigger" href="#modalCatalog">
+                    <i class="material-icons">cloud_done</i>
+                </a>
+            </li>
+            <li>
+                <a class="btn-floating yellow">
+                    <i class="material-icons">edit</i>
+                </a>
+            </li>
+            <li>
+                <a class="btn-floating red darken-1">
+                    <i class="material-icons">delete</i>
+                </a>
+            </li>
         </ul>
     </div>
 
@@ -235,8 +248,6 @@
         $('.modal').modal();
 
         $('.chips').material_chip();
-
-        $('.sidenav').sidenav();
 
         let divInitNewCatalog = document.getElementById("divInitNewCatalog");
         let myCatalogSIG = document.getElementById("myCatalogSIG");
@@ -409,7 +420,7 @@
             let url = "https://localhost:8080/catalogs"
             let xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
-                if (xhttp.readyState == 4){
+                if (xhttp.readyState == 4) {
                     console.log("Deu certo");
                     let x = xhttp.responseText;
                     console.log(x);
