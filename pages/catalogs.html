@@ -1,58 +1,118 @@
-<!DOCTYPE html>
-<html lang="en">
+  <!DOCTYPE html>
+  <html lang="en">
 
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Visualizar Catálogos</title>
+    <title>SIGFinder - Procurar Catálogos</title>
 
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="../css/create_new_sig.css" rel="stylesheet">
+    <link href="../css/catalogs.css" rel="stylesheet">
 
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 
-</head>
+  </head>
 
-<body>
+  <body>
 
-        <nav class="default" role="navigation">
-                <div class="nav-wrapper">
-                  <a href="#!" class="brand-logo center">Brand</a>
-                  <a href="#" data-activates="mobile-demo" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
-                  <ul class="right hide-on-med-and-down">
-                    <li><a href="#">Login</a></li>
-                    <li><a class="waves-effect red waves-light btn">Sign up</a></li>
-                  </ul>
-                  <ul class="side-nav" id="mobile-demo">
-                    <li><a href="#">Login</a></li>
-                    <li><a href="#">Sign up</a></li>
-                  </ul>
-                </div>
-              </nav>
+    <nav class="nav-wrapper indigo darken-1">
+      <a href="/index.html" class="brand-logo center">SIGFinder</a>
+      <div class="col s12 hide-on-med-and-down" style="margin-left: 20px">
+        <a href="/index.html" class="breadcrumb waves-light">Home</a>
+        <a href="#!" class="breadcrumb waves-light">Procurar Catálogos</a>
+      </div>
+    </nav>
 
-              <div class="input-field">
-                <input id="search" type="search" required>
-                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                <i class="material-icons">close</i>
-              </div>
-        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-        <!-- Compiled and minified JavaScript -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <div class="container">
+      <form id=""class="col s8 myForm">
+        <div class="row divSearchBar">
+          <div class="input-field col s8">
+            <input id="inputSearchText" placeholder="Ex: Usability" type="text" class="validate">
+            <label for="icon_prefix">Procurar</label>
+          </div>
+          <br>
+          <br>
+          <a id="btSearchCatalogs"class="waves-effect red waves-light btn teal">Procurar</a>
+        </div>
+      </form>
+
+      <div class="row">
+          <div class="info col s12">
+              <p>Procure por catálogos nos mais variados domínios de aplicação e áreas.</p>
+              <p>Você poderá visualizar todos os catálogos disponíveis apenas apertando no botão "Procurar".</p>
+            </div>  
+      </div>
+
+      <ul class="collection with-header">
+        
+      </ul>
+      
+    </div>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <script>
-        $('.button-collapse').sideNav({
-            menuWidth: 300, // Default is 240
-            edge: 'right', // Choose the horizontal origin
-            closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+
+      let btSearchCatalogs = document.getElementById("btSearchCatalogs");
+      btSearchCatalogs.addEventListener("click", getCatalogs);
+
+      function getCatalogs(){
+
+        let searchText = document.getElementById("inputSearchText").value;
+
+        let xhttp = new XMLHttpRequest();
+        let url = "http://localhost:8080/catalogs";
+
+        xhttp.onreadystatechange = function(){
+          if(xhttp.readyState == 4){
+            let catalogArrays = JSON.parse(xhttp.responseText);
+            createListCatalogs(catalogArrays);
+          }
+        };
+
+        if(searchText !== ""){
+          xhttp.open("GET", url+"?searchString="+searchText, true);
+        }else{
+          xhttp.open("GET", url, true);
         }
-        );
+
+        xhttp.send();
+        
+      }
+
+      function createListCatalogs(catalogsArray){
+
+        let collection = document.querySelector(".collection");
+        let header = document.createElement("li");
+        let textHeader = document.createElement("h4");
+
+        header.classList.add("collection-header");
+        textHeader.innerHTML = "Catálogos";
+        header.appendChild(textHeader);
+        collection.appendChild(header);
+
+        for(let i = 0; i < catalogsArray.length; i++){
+          let item = document.createElement("a");
+          item.classList.add("collection-item");
+          item.innerHTML = "Id: " + catalogsArray[i].id + ", descrição: " + catalogsArray[i].description + ", referência - " + catalogsArray[i].reference +
+                            ", ano - " + catalogsArray[i].year;
+          item.href = "catalog.html";
+          collection.appendChild(item);
+        }              
+      }
+
     </script>
 
     <script src="../js/go.js"></script>
     <script src="../js/commomFunctions.js"></script>
     <script src="../js/newSIG.js"></script>
-</body>
+  </body>
 
-</html>
+  </html>

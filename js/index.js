@@ -40,7 +40,6 @@ function init() {
         let xhttp = new XMLHttpRequest();
         let x;
 
-
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4) {
                 data = xhttp.response;
@@ -160,12 +159,6 @@ function init() {
                 new go.Binding("text", "contributionType", isOrContributionType))
         );
 
-    document.getElementById('zoomToFit').addEventListener('click', function () {
-        myDiagram.zoomToFit();
-    });
-    document.getElementById('centerRoot').addEventListener('click', function () {
-        myDiagram.scale = 1;
-        myDiagram.scrollToRect(myDiagram.findNodeForKey(0).actualBounds);
-    });
+    myDiagram.zoomToFit();
 
 }

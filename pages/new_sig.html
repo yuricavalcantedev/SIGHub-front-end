@@ -19,19 +19,12 @@
 <body onload="init()">
 
     <nav>
-        <div class="nav-wrapper red">
-            <a href="#" class="brand-logo center">Logo</a>
-            <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <li>
-                    <a href="#">Home</a>
-                </li>
-                <li>
-                    <a href="#">Visualizar Catálogos</a>
-                </li>
-                <li class="active">
-                    <a href="#">Criar Catálogos</a>
-                </li>
-            </ul>
+        <div class="nav-wrapper indigo darken-1">
+            <a href="#" class="brand-logo center">SIGFinder</a>
+            <div class="col s12 hide-on-med-and-down" style="margin-left: 20px">
+                    <a href="/index.html" class="breadcrumb waves-light">Home</a>
+                    <a href="#!" class="breadcrumb waves-light">Criar Catálogo</a>
+                  </div>
         </div>
     </nav>
 
@@ -215,17 +208,6 @@
         </ul>
     </div>
 
-    <!--
-        
-    <div class="buttonsHelperDiv">
-
-        <a id="zoomToFit" href="" class="waves-effect waves-light blue btn buttonsHelper">
-            <i class="material-icons left">crop_landscape</i>Enquadrar</a>
-        <a id="centerRoot" href="" class="waves-effect waves-light blue btn buttonsHelper">
-            <i class="material-icons left">filter_drama</i>Centralizar</a>
-    </div>
-
-    -->
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js">
@@ -356,16 +338,18 @@
             owner.email = infoOwner[1];
 
             let catalog = new Object();
-            catalog.id = null;
-            catalog.authors = getAuthors(inputAuthors);
-            catalog.reference = reference;
-            catalog.year = year;
-            catalog.applicationDomainList = getApplicationDomainsFromChip(inputApplicationDomain);
-            catalog.owner = owner;
-            catalog.description = description;
-            catalog.softgoalMain = nodeDataArray[0];
-            catalog.areasList = getAreasFromChip(inputArea);
 
+            catalog.id = null;            
+            catalog.reference = reference;
+            catalog.year = year;            
+            catalog.description = description;
+            catalog.owner = owner;
+            catalog.softgoalMain = nodeDataArray[0];
+            catalog.notesList = [];
+            catalog.authors = getAuthors(inputAuthors);    
+            catalog.areasList = getAreasFromChip(inputArea);
+            catalog.applicationDomainList = getApplicationDomainsFromChip(inputApplicationDomain);                       
+            console.log(catalog);
             sendNewCatalog(catalog);
         });
 
@@ -417,7 +401,7 @@
 
         function sendNewCatalog(catalog) {
 
-            let url = "https://localhost:8080/catalogs"
+            let url = "http://localhost:8080/catalogs"
             let xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (xhttp.readyState == 4) {
@@ -431,6 +415,7 @@
             xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
             xhttp.send(catalog);
         }
+    
     </script>
 
     <script src="../js/go.js"></script>

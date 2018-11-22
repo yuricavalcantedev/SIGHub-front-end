@@ -65,7 +65,7 @@ function setEvaluationProcedure(evaluationProcedure) {
 function isAndContributionType(contributionType) {
     if (contributionType == 0)
         return "";
-    else if (contributionType === 1 || contributionType === 2)
+    else if (contributionType == 1 || contributionType == 2)
         return "___";
 }
 
