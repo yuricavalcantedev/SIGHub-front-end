@@ -1,17 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>SIGFinder - Visualizar Catálogo</title>
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="../css/catalogs.css" rel="stylesheet">
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+
+    <script src="/js/go.js"></script>
+    <script src="/js/commomFunctions.js"></script>
+    <script src="/js/catalog.js"></script>
+    <script src="/js/index.js"></script>
 </head>
-<body>
-    <div id="myDiagramDiv" style="width:600px; height:600px">
+
+<body onload="init()">
+
+    <nav>
+        <div class="nav-wrapper indigo darken-1">
+            <a href="#" class="brand-logo center">SIGFinder</a>
+            <div class="col s12 hide-on-med-and-down" style="margin-left: 20px">
+                <a href="/index.html" class="breadcrumb waves-light">Home</a>
+                <a href="/pages/catalogs.html" class="breadcrumb waves-light">Procurar Catálogos</a>
+                <a href="#!" class="breadcrumb waves-light">Visualizar Catálogo</a>
+            </div>
+        </div>
+    </nav>
+    <div id="myDiagramDiv" class="container">
 
     </div>
-    
-    <script src="/js/index.js"></script>
-    
+
+
+
 </body>
+
 </html>
