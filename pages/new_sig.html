@@ -22,9 +22,9 @@
         <div class="nav-wrapper indigo darken-1">
             <a href="#" class="brand-logo center">SIGFinder</a>
             <div class="col s12 hide-on-med-and-down" style="margin-left: 20px">
-                    <a href="/index.html" class="breadcrumb waves-light">Home</a>
-                    <a href="#!" class="breadcrumb waves-light">Criar Catálogo</a>
-                  </div>
+                <a href="/index.html" class="breadcrumb waves-light">Home</a>
+                <a href="#!" class="breadcrumb waves-light">Criar Catálogo</a>
+            </div>
         </div>
     </nav>
 
@@ -37,12 +37,12 @@
             <form class="col s12">
                 <div class="row">
                     <div id="parentDiv" class="input-field col s12">
-                        <input placeholder="" id="parent_softgoal" type="text" class="validate" >
+                        <input placeholder="" id="parent_softgoal" type="text" class="validate">
                         <label for="parent_softgoal">Parent *</label>
                     </div>
 
                     <div class="input-field col s12">
-                        <input placeholder="" id="name_softgoal" type="text" class="validate" >
+                        <input placeholder="" id="name_softgoal" type="text" class="validate">
                         <label for="name_softgoal">Nome *</label>
                     </div>
 
@@ -134,7 +134,7 @@
             <div class="row">
                 <form id="formNewCatalog" action="" class="col s12">
                     <div class="input-field col s12">
-                        <input placeholder="Ex: João, joao@gmail.com" id="owner_catalog" type="text" class="validate" required="" >
+                        <input placeholder="Ex: João, joao@gmail.com" id="owner_catalog" type="text" class="validate" required="">
                         <label for="owner_catalog">Criador *</label>
                     </div>
 
@@ -214,6 +214,12 @@
     </script>
 
     <script>
+
+        if (typeof (Storage) !== "undefined") {
+            // Store
+            
+            console.log(sessionStorage.getItem("id"));
+        }
 
         $('.button-collapse').sideNav({
             menuWidth: 300, // Default is 240
@@ -339,16 +345,16 @@
 
             let catalog = new Object();
 
-            catalog.id = null;            
+            catalog.id = null;
             catalog.reference = reference;
-            catalog.year = year;            
+            catalog.year = year;
             catalog.description = description;
             catalog.owner = owner;
             catalog.softgoalMain = nodeDataArray[0];
             catalog.notesList = [];
-            catalog.authors = getAuthors(inputAuthors);    
+            catalog.authors = getAuthors(inputAuthors);
             catalog.areasList = getAreasFromChip(inputArea);
-            catalog.applicationDomainList = getApplicationDomainsFromChip(inputApplicationDomain);                       
+            catalog.applicationDomainList = getApplicationDomainsFromChip(inputApplicationDomain);
             console.log(catalog);
             sendNewCatalog(catalog);
         });
@@ -415,7 +421,7 @@
             xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
             xhttp.send(catalog);
         }
-    
+
     </script>
 
     <script src="../js/go.js"></script>

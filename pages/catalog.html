@@ -33,11 +33,34 @@
             </div>
         </div>
     </nav>
+
+    <ul id="slide-out" class="side-nav" style="margin-top: 50px;">
+            <li><a class="waves-effect" href="#!"><i class="material-icons">code</i>HTML5</a></li>
+            <li><a class="waves-effect" href="#!"><i class="material-icons">flare</i>CSS3</a></li>
+            <li><a class="waves-effect" href="#!"><i class="material-icons">desktop_mac</i>Bootstrap 3</a></li>
+            <li><a class="waves-effect" href="#!"><i class="material-icons">laptop_mac</i>Bootstrap 4</a></li>
+            <li><a class="waves-effect" href="#!"><i class="material-icons">dvr</i>Materialize CSS</a></li>
+         </ul>
+         <a href="#" data-activates="slide-out" class="button-collapse show-on-medium-and-up"><i class="material-icons">info</i></a>
+      
+
+
     <div id="myDiagramDiv" class="container">
 
     </div>
 
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+      <!-- Compiled and minified JavaScript -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
+    <script>
+        $('.button-collapse').sideNav({
+            menuWidth: 300, // Default is 240
+            edge: 'left', // Choose the horizontal origin
+            closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+        }
+        );
+    </script>
 
 </body>
 

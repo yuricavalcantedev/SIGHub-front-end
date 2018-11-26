@@ -31,6 +31,7 @@
   <div class = "container">
     <a href="pages/catalogs.html" class="waves-effect waves-light blue btn btnsHome">Procurar Catálogos</a>
     <a href="pages/new_sig.html" class="waves-effect waves-light green btn btnsHome">Criar Catálogo</a>
+
   </div>
 
   <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
@@ -38,7 +39,16 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
   <script>
+
+
+    if (typeof(Storage) !== "undefined") {
+    // Store
+    sessionStorage.setItem("id", "1");
+    }
+
     $('.sidenav').sidenav();
+
+
   </script>
 </body>
 
