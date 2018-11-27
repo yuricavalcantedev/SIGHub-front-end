@@ -1,8 +1,25 @@
-.container{
+.myContainer{
+    display: flex;
+    width: 70vw !important;
+    height: 90vh !important;
+    margin-top: 10px;
+    margin-left: 250px;
+    align-items: baseline;
+    flex-wrap: wrap;
+}
+
+
+.divDiagramSIG{
     display: flex;
     width: 100vw;
-    height: 90vh;
+    height: 80vh;
     justify-items: center;
     align-items: baseline;
     flex-wrap: wrap;
+}
+
+.mySideNavBar{
+    margin-top: 65px !important;
+    width: 250px !important;
+    height: 100vh;
 }

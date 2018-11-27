@@ -1,181 +1,146 @@
-//arquivo apenas para guardar o retorno da chamada da API REST
+//node.data.value pega a propriedade (value) do node.
 
-let apiREST = [
-    {
-        "id": 1,
-        "reference": "Reference",
-        "year": 2018,
-        "keyWords": "Ubiquos System, IoT, Security, ",
-        "description": "This is a catalog of Ubiquos System developed to be showed on a HIC Conference",
-        "owner": {
-            "id": 2,
-            "name": "Yuri",
-            "email": "yuricavalcante@gmail.com"
-        },
-        "softgoalMain": {
-            "id": 1,
-            "parent": null,
-            "name": "Security",
-            "description": "Security is ...",
-            "priority": false,
-            "nfrType": 1,
-            "contributionType": 0,
-            "contributionTypeCatalog": 0,
-            "evaluationProcedure": 0,
-            "softgoalList": [
-                {
-                    "id": 2,
-                    "parent": null,
-                    "name": "Integrity",
-                    "description": "Integrity is ...",
-                    "priority": false,
-                    "nfrType": 1,
-                    "contributionType": 1,
-                    "contributionTypeCatalog": 3,
-                    "evaluationProcedure": 1,
-                    "softgoalList": []
-                },
-                {
-                    "id": 3,
-                    "parent": null,
-                    "name": "Confidentiality",
-                    "description": "Confidentiality is ...",
-                    "priority": false,
-                    "nfrType": 3,
-                    "contributionType": 1,
-                    "contributionTypeCatalog": 0,
-                    "evaluationProcedure": 2,
-                    "softgoalList": [
-                        {
-                            "id": 4,
-                            "parent": null,
-                            "name": "Authorize access",
-                            "description": "Authorize access is ...",
-                            "priority": false,
-                            "nfrType": 2,
-                            "contributionType": 2,
-                            "contributionTypeCatalog": 2,
-                            "evaluationProcedure": 0,
-                            "softgoalList": [
-                                {
-                                    "id": 5,
-                                    "parent": null,
-                                    "name": "Validate access agains eligibility rules",
-                                    "description": "Validate access agains eligibility rules is ...",
-                                    "priority": false,
-                                    "nfrType": 3,
-                                    "contributionType": 1,
-                                    "contributionTypeCatalog": 1,
-                                    "evaluationProcedure": 3,
-                                    "softgoalList": []
-                                },
-                                {
-                                    "id": 6,
-                                    "parent": null,
-                                    "name": "Identify users",
-                                    "description": "Identify users is ...",
-                                    "priority": false,
-                                    "nfrType": 2,
-                                    "contributionType": 1,
-                                    "contributionTypeCatalog": 0,
-                                    "evaluationProcedure": 0,
-                                    "softgoalList": []
-                                },
-                                {
-                                    "id": 7,
-                                    "parent": null,
-                                    "name": "Authenticate user access",
-                                    "description": "Authenticate user access is ...",
-                                    "priority": false,
-                                    "nfrType": 2,
-                                    "contributionType": 1,
-                                    "contributionTypeCatalog": 5,
-                                    "evaluationProcedure": 5,
-                                    "softgoalList": [
-                                        {
-                                            "id": 8,
-                                            "parent": null,
-                                            "name": "Use PIN",
-                                            "description": "Use PIN is ...",
-                                            "priority": false,
-                                            "nfrType": 2,
-                                            "contributionType": 0,
-                                            "contributionTypeCatalog": 0,
-                                            "evaluationProcedure": 0,
-                                            "softgoalList": []
-                                        },
-                                        {
-                                            "id": 9,
-                                            "parent": null,
-                                            "name": "Compare signature",
-                                            "description": "Compare signature is ...",
-                                            "priority": false,
-                                            "nfrType": 2,
-                                            "contributionType": 2,
-                                            "contributionTypeCatalog": 0,
-                                            "evaluationProcedure": 0,
-                                            "softgoalList": []
-                                        },
-                                        {
-                                            "id": 10,
-                                            "parent": null,
-                                            "name": "Require additional ID",
-                                            "description": "Require additional ID is ...",
-                                            "priority": false,
-                                            "nfrType": 2,
-                                            "contributionType": 2,
-                                            "contributionTypeCatalog": 0,
-                                            "evaluationProcedure": 1,
-                                            "softgoalList": []
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "id": 11,
-                    "parent": null,
-                    "name": "Availability",
-                    "description": "Availability is ...",
-                    "priority": true,
-                    "nfrType": 1,
-                    "contributionType": 1,
-                    "contributionTypeCatalog": 0,
-                    "evaluationProcedure": 2,
-                    "softgoalList": []
-                }
-            ]
-        },
-        "notesList": [],
-        "authors": [
-            {
-                "id": 1,
-                "name": "Rainara Maia Carvalho",
-                "email": "rainaramaia4@gmail.com"
-            },
-            {
-                "id": 2,
-                "name": "Yuri",
-                "email": "yuricavalcante@gmail.com"
-            }
-        ],
-        "areasList": [
-            {
-                "id": 1,
-                "name": "Internet of Things",
-                "description": "Descrição 1",
-                "example": "Example 1, Example 2, Example 3"
-            }
-        ],
-        "applicationDomainList": [
-            {
-                "id": 1,
-                "name": "Banking",
-                "description": "Descrição 1",
-                "example": "Example 1, Example 2, Example 3"
-            }
-        ]
+//caso a pessoa clique duas vezes no node, abrir uma "caixa ao lado" com as possíveis informações que ele pode colocar dentro de um softgoal
+//nome, prioridade, contributionType, etc.
+//exemplo: se for o primeiro nó, não vai mostrar para ele algumas configurações como ("AND", "SATISFICIED", essas coisas).
+//então no botão "criar", eu pego esses dados, e crio um novo node (softgoal) (que será outra função). 
+//essa função irá receber o node e adicionar o node no node que foi disparado o doubleClick (softgoals)
+//quando abrir o modal, tentar setar ele na parte direita da tela, para não prejudicar totalmente a visão do usuário.
+//e quando apertar para abrir o modal, colocar o zoom da tela centralizado no node que está sendo clickado no momento, para o 
+//usuário ter pelo menos noção de como está a estrutura atualmente
+//não permitir a deleção automática do item, mas criar um método auxiliar para quando o usuário apertar algum botão
+//o método deletar o node via node.removeNodeData();
+
+//e se Deus estiver elevando minha fé?
+//me fazendo andar não pelo que sinto, ou vejo, mas pela fé? É assim que vou agradar a Ele
+//"O justo viverá pela fé". "E Ele não tem prazer nos que retrocedem". "A fé é a certeza das cosias que se esperam e a prova das coisas que não vemos.". "Sem fé, é impossível agradar a Deus".
+
+// here's the family data
+var nodeDataArray = [];
+let catalog = null;
+
+function init() {
+
+    let xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4) {
+            data = xhttp.response;
+            catalog = JSON.parse(data);
+            linksNodesToModel(catalog.softgoalMain, null);
+
+            fillDiagram();
+        }
     }
-]
+
+    let idCatalog = parseInt(localStorage.getItem("idCatalog"));
+    let url = 'http://localhost:8080/catalogs/' + idCatalog + '/catalog';
+    xhttp.open('GET', url, true);
+    xhttp.send();
+
+    function linksNodesToModel(softgoal, softgoalParent) {
+
+        //adiciona o softgoal na árvore
+        var newNode = {
+            key: softgoal.id,
+            name: softgoal.name,
+            priority: softgoal.priority,
+            nfrType: softgoal.nfrType,
+            contributionType: softgoal.contributionType,
+            contributionTypeCatalog: softgoal.contributionTypeCatalog,
+            evaluationProcedure: softgoal.evaluationProcedure
+        };
+
+        if (softgoalParent !== null) {
+            newNode.parent = softgoalParent.id;
+        }
+
+        nodeDataArray.push(newNode);
+
+        //chama recursivamente para os outros nodes
+        for (let x = 0; x < softgoal.softgoalList.length; x++) {
+            linksNodesToModel(softgoal.softgoalList[x], softgoal);
+        }
+    }
+
+}
+
+
+function fillDiagram() {
+
+    var $ = go.GraphObject.make;  // for conciseness in defining templates
+    var div = document.querySelector("#myDiagramDiv");
+
+    myDiagram =
+        $(go.Diagram, "myDiagramDiv",  // must be the ID or reference to div
+            {
+                "toolManager.hoverDelay": 100,  // 100 milliseconds instead of the default 850
+                initialContentAlignment: go.Spot.Center,
+                layout:  // create a TreeLayout for the family tree
+                    $(go.TreeLayout, //https:gojs.net/latest/api/symbols/Binding.html
+                        {
+                            angle: 90, nodeSpacing: 20, layerSpacing: 40, layerStyle: go.TreeLayout.LayerUniform,
+                        }),
+                "undoManager.isEnabled": true
+            });
+
+    myDiagram.nodeTemplate =
+        $(go.Node, "Auto",
+            $(go.Shape, "Rectangle", { stroke: "white", fill: "white" }),
+            $(go.Panel, "Table",
+                {
+                    defaultSeparatorPadding: 2
+                },
+
+                //Row 0
+                $(go.TextBlock, "", { row: 0, column: 0 }),
+
+                $(go.Shape, {
+                    geometry: go.Geometry.parse('M 25,25 a 25,20 2 0,0 0,40 h 50 a 20,20 1 0,0 0,-40 a 20,10 1 0,0 -15,-10 a 15,15 1 0,0 -35,10 z'),
+                    column: 1, desiredSize: new go.Size(100, 50), fill: "green", alignment: go.Spot.Left
+                },
+                    new go.Binding("strokeWidth", "nfrType", isOperationalizationSoftgoal),
+                    new go.Binding("strokeDashArray", "nfrType", isClaimSoftgoal)),
+
+                $(go.TextBlock, { textAlign: "center", font: "bold 17pt Comic Sans MS, Comic Sans, cursive, helvetica, arial, sans-serif", margin: new go.Margin(13, 10, 0, 10), row: 0, column: 1 },
+                    new go.Binding("text", "evaluationProcedure", setEvaluationProcedure)),
+
+                $(go.TextBlock, { font: "20pt arial, sans-serif", textAlign: "center", margin: new go.Margin(25, 0, 0, 5), row: 0, column: 2 },
+                    new go.Binding("text", "priority", isPriority)),
+
+                $(go.TextBlock, { font: "10pt helvetica, arial, sans-serif", textAlign: "center", wrap: go.TextBlock.WrapFit, width: 100, margin: new go.Margin(5, 0, 0, 0), row: 1, column: 1 },
+                    new go.Binding("text", "name")),
+            )
+        );
+
+    // replace the default Node template in the nodeTemplateMap
+
+    // define the Link template
+    myDiagram.linkTemplate =
+        $(go.Link,  // the whole link panel
+            { routing: go.Link.Orthogonal, corner: 2, selectable: true, adjusting: go.Link.Stretch, reshapable: true },
+            $(go.Shape,
+                { strokeWidth: 1, stroke: 'black' }),
+            $(go.TextBlock,  // the label text
+                {
+                    textAlign: "center",
+                    font: "bold 10pt helvetica, arial, sans-serif",
+                    margin: new go.Margin(20, 0, 0, 20),
+                    segmentOffset: new go.Point(0, -15)
+                },
+                // editing the text automatically updates the model data
+                new go.Binding("text", "contributionTypeCatalog", setContributionTypeCatalog).makeTwoWay()),
+            $(go.TextBlock, {
+                segmentIndex: 3, segmentFraction: 0.2, textAlign: "center"
+            },
+                new go.Binding("text", "contributionType", isAndContributionType)),
+            $(go.TextBlock, {
+                segmentIndex: 3, segmentFraction: 0.4, textAlign: "center"
+            },
+                new go.Binding("text", "contributionType", isOrContributionType))
+        );
+
+    myDiagram.model = new go.TreeModel(nodeDataArray);
+    myDiagram.zoomToFit();
+
+}

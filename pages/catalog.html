@@ -9,7 +9,7 @@
 
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="../css/catalogs.css" rel="stylesheet">
+    <link href="../css/catalog.css" rel="stylesheet">
 
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
@@ -18,7 +18,7 @@
     <script src="/js/go.js"></script>
     <script src="/js/commomFunctions.js"></script>
     <script src="/js/catalog.js"></script>
-    <script src="/js/index.js"></script>
+
 </head>
 
 <body onload="init()">
@@ -28,17 +28,51 @@
             <a href="#" class="brand-logo center">SIGFinder</a>
             <div class="col s12 hide-on-med-and-down" style="margin-left: 20px">
                 <a href="/index.html" class="breadcrumb waves-light">Home</a>
-                <a href="/pages/catalogs.html" class="breadcrumb waves-light">Procurar Catálogos</a>
                 <a href="#!" class="breadcrumb waves-light">Visualizar Catálogo</a>
             </div>
         </div>
     </nav>
-    <div id="myDiagramDiv" class="container">
+
+    <ul id="slide-out" class="side-nav fixed mySideNavBar">
+
+        <li><a href="#!">Informações</a></li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <div class="row">
+            <div id="parentDiv" class="input-field col s12">
+                <input disabled placeholder="" id="owner_softgoal" type="text">
+                <label for="owner_softgoal">Criador</label>
+            </div>
+            <div id="parentDiv" class="input-field col s12">
+                    <input disabled placeholder="" id="authors_softgoal" type="text">
+                    <label for="authors_softgoal">Autores</label>
+                </div>
+            <div id="parentDiv" class="input-field col s12">
+                <input disabled placeholder="" id="description_softgoal" type="text">
+                <label for="description_softgoal">Descricao</label>
+            </div>
+            <div id="parentDiv" class="input-field col s12">
+                <input disabled placeholder="" id="reference_softgoal" type="text">
+                <label for="reference_softgoal">Referência</label>
+            </div>
+            <div id="parentDiv" class="input-field col s12">
+                <input disabled placeholder="" id="year_softgoal" type="text">
+                <label for="year_softgoal">Ano</label>
+            </div>
+        </div>
+    </ul>
+    <div id="myDiagramDiv" class="myContainer">
 
     </div>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
-
-
+    <script>
+    
+    
+    </script>
 </body>
 
 </html>

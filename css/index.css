@@ -1,12 +1,42 @@
 .container{
-
-    width: 100vw;
+    width: 90vw;
     height: 80vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative;
+    text-align: center;
+    color: white;
 }
 
-.btnsHome{
-    margin: 20px;
+.content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
+
+.btNewCatalog{
+    position: absolute !important;
+    bottom: 10px !important;
+    right: 0px !important;
+}
+
+h5{
+    color:black;
+}
+
+.titleCatalogsCollection{
+    color: black;
+}
+
+.background{
+    margin-top: -10px;
+    margin-bottom: 10px;
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5)
+      );
+      
+    width: 100vw;
+    height: 89vh;
+}
+
+
