@@ -31,13 +31,13 @@ function setContributionTypeCatalog(contributionTypeCatalog) {
         return "BREAKS";
     else if (contributionTypeCatalog == 2)
         return "HURTS";
-    else if (contributionTypeCatalog == 2)
+    else if (contributionTypeCatalog == 3)
         return "UNKNOWN";
-    else if (contributionTypeCatalog == 2)
+    else if (contributionTypeCatalog == 4)
         return "HELP";
-    else if (contributionTypeCatalog == 2)
+    else if (contributionTypeCatalog == 5)
         return "SOME -";
-    else if (contributionTypeCatalog == 2)
+    else if (contributionTypeCatalog == 6)
         return "SOME +";
     else
         return "";

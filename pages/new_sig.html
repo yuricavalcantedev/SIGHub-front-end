@@ -12,7 +12,7 @@
 
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-    <title>Document</title>
+    <title>SIGFinder - Criar Catálogo</title>
 
 </head>
 
@@ -134,18 +134,20 @@
             <div class="row">
                 <form id="formNewCatalog" action="" class="col s12">
                     <div class="input-field col s12">
-                        <input placeholder="Ex: João, joao@gmail.com" id="owner_catalog" type="text" class="validate" required="">
+                        <input placeholder="Ex: João, joao@gmail.com" id="owner_catalog" type="text" class="validate"
+                            required="">
                         <label for="owner_catalog">Criador *</label>
                     </div>
 
                     <div class="input-field col s12">
-                        <input placeholder="Ex: João, joao@gmail.com; Maria, maria@gmail.com;" id="authors_catalog" type="text" class="validate"
-                            required="">
+                        <input placeholder="Ex: João, joao@gmail.com; Maria, maria@gmail.com;" id="authors_catalog"
+                            type="text" class="validate" required="">
                         <label for="authors_catalog">Lista de Autores *</label>
                     </div>
 
                     <div class="input-field col s12">
-                        <input placeholder="Ex: Sua referência" id="reference_catalog" type="text" class="validate" required="">
+                        <input placeholder="Ex: Sua referência" id="reference_catalog" type="text" class="validate"
+                            required="">
                         <label for="reference_catalog">Referência *</label>
                     </div>
 
@@ -156,7 +158,8 @@
 
                     <div class="input-field col s12">
                         <div id="chips_applicationDomain_catalog" class="chips validate" required=""></div>
-                        <label for="chips_applicationDomain_catalog">Domínio de Aplicação * (pressione "ENTER" para cada domínio)</label>
+                        <label for="chips_applicationDomain_catalog">Domínio de Aplicação * (pressione "ENTER" para
+                            cada domínio)</label>
                     </div>
 
                     <div class="input-field col s12">
@@ -172,7 +175,8 @@
                     <div class="modal-footer">
                         <div class="input-field col s12">
                             <a href="#!" class="modal-action modal-close waves-effect waves-light red btn-flat white-text">Fechar</a>
-                            <input type="submit" name="action" class="modal-action waves-effect waves-light green btn-flat white-text" value="Enviar">
+                            <input type="submit" name="action" class="modal-action waves-effect waves-light green btn-flat white-text"
+                                value="Enviar">
                         </div>
                     </div>
 
@@ -183,6 +187,20 @@
         </div>
 
     </div>
+
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h4>Excluir Softgoal</h4>
+            <p id="msgExcluirSoftgoal">Você realmente deseja excluir este softgoal? </p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-light blue btn-flat white-text">Cancelar</a>
+            <a id="btnDeleteSoftgoal" href="#!" class="modal-action modal-close waves-effect waves-light red btn-flat white-text">Excluir</a>
+        </div>
+    </div>
+
 
     <div class="action-btn fabAddSoftgoal fixed-action-btn">
         <a id="fabAddSoftgoal2" data-activates="slide-out" class="button-collapse sidenav-trigger show-on-large btn-floating btn-large green">
@@ -196,17 +214,13 @@
                 </a>
             </li>
             <li>
-                <a class="btn-floating yellow">
-                    <i class="material-icons">edit</i>
-                </a>
-            </li>
-            <li>
-                <a class="btn-floating red darken-1">
+                <a class="btn-floating red darken-1 btn modal-trigger" href="#modal1">
                     <i class="material-icons">delete</i>
                 </a>
             </li>
         </ul>
     </div>
+
 
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <!-- Compiled and minified JavaScript -->
@@ -214,12 +228,6 @@
     </script>
 
     <script>
-
-        if (typeof (Storage) !== "undefined") {
-            // Store
-            
-            console.log(sessionStorage.getItem("id"));
-        }
 
         $('.button-collapse').sideNav({
             menuWidth: 300, // Default is 240
@@ -245,6 +253,8 @@
         let fabAddSoftgoal = document.querySelector(".fabAddSoftgoal");
         let fabAddSoftgoal2 = document.getElementById("fabAddSoftgoal2");
         let formNewCatalog = document.getElementById("formNewCatalog");
+        let btnDeleteSoftgoal = document.getElementById("btnDeleteSoftgoal");
+        let btnEditSoftgoal = document.getElementById("btnEditSoftgoal");
 
         myCatalogSIG.hidden = true;
         fabAddSoftgoal.hidden = true;
@@ -259,6 +269,15 @@
             myCatalogSIG.hidden = false;
 
 
+        });
+
+        btnDeleteSoftgoal.addEventListener("click", function () {
+            console.log("delete softgoal");
+
+            let keyNodeToDelete = softgoalClickedNow.key;
+            myDiagram.model.removeNodeData(softgoalClickedNow);
+
+            Materialize.toast("Softgoal excluído!", 1500, "red");
         });
 
         let btCreateNewSoftgoal = document.querySelector(".buttonCriarSoftgoal");
@@ -312,9 +331,7 @@
 
             addSoftgoal(softgoal);
 
-            //clean the fields TODO
-            inputName.value = "";
-            inputParent.value = "";
+            clearValuesForm();
 
         });
 
@@ -409,17 +426,40 @@
 
             let url = "http://localhost:8080/catalogs"
             let xhttp = new XMLHttpRequest();
+
+            catalog = JSON.stringify(catalog);
+
+            xhttp.open("POST", url, true);
+            xhttp.setRequestHeader("Content-Type", "application/json");
+
             xhttp.onreadystatechange = function () {
-                if (xhttp.readyState == 4) {
-                    console.log("Deu certo");
-                    let x = xhttp.responseText;
-                    console.log(x);
+                console.log(xhttp.status);
+                var response = JSON.parse(xhttp.responseText);
+                if (xhttp.readyState == 4 && xhttp.status == "201") {
+                    console.table(response);
+                } else {
+                    console.error(response);
                 }
             };
 
-            xhttp.open("POST", url, true);
-            xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
             xhttp.send(catalog);
+        }
+
+        function clearValuesForm(){
+            
+            let inputParentDiv = document.getElementById("parentDiv");
+            let inputParent = document.getElementById("parent_softgoal");
+            let inputName = document.getElementById("name_softgoal");
+            let selectNFRType = document.getElementById("selectNFRType");
+            let selectContributionType = document.getElementById("selectContributionType");
+            let selectContributionTypeCatalog = document.getElementById("selectContributionTypeCatalog");
+            let selectEvaluationProcedure = document.getElementById("selectEvaluationProcedure");
+            let radioButtonPriority = document.querySelectorAll(".with-gap");
+
+            //clean the fields TODO
+            inputName.value = "";
+            inputParent.value = "";
+            selectNFRType.options[0].setAttribute("selected", "true");
         }
 
     </script>

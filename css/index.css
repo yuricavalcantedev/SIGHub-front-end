@@ -1,6 +1,5 @@
 .container{
-    width: 90vw;
-    height: 80vh;
+
     position: relative;
     text-align: center;
     color: white;
@@ -15,8 +14,8 @@
 
 .btNewCatalog{
     position: absolute !important;
-    bottom: 10px !important;
-    right: 0px !important;
+    bottom: 20px !important;
+    right: 10px !important;
 }
 
 h5{
@@ -27,16 +26,15 @@ h5{
     color: black;
 }
 
-.background{
-    margin-top: -10px;
-    margin-bottom: 10px;
-    background-image: linear-gradient(
-        rgba(0, 0, 0, 0.5),
-        rgba(0, 0, 0, 0.5)
-      );
-      
+.background{    
     width: 100vw;
     height: 89vh;
 }
 
+.backgroundImage{
+    width: 100vw;
+    height: 89vh; 
+    background-image: url("/imgs/background2.png");    
+    opacity: 0.4;
+}
 

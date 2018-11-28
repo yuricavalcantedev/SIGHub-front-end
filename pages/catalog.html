@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SIGFinder - Visualizar Catálogo</title>
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="../css/catalog.css" rel="stylesheet">
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+
+    <script src="/js/go.js"></script>
+    <script src="/js/commomFunctions.js"></script>
+    <script src="/js/catalog.js"></script>
+
+</head>
+
+<body onload="init()">
+
+    <nav>
+        <div class="nav-wrapper indigo darken-1">
+            <a href="#" class="brand-logo center">SIGFinder</a>
+            <div class="col s12 hide-on-med-and-down" style="margin-left: 20px">
+                <a href="/index.html" class="breadcrumb waves-light">Home</a>
+                <a href="#!" class="breadcrumb waves-light">Visualizar Catálogo</a>
+            </div>
+        </div>
+    </nav>
+
+    <ul id="slide-out" class="side-nav fixed mySideNavBar">
+
+        <li><a href="#!">Informações</a></li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <div class="row">
+            <div id="parentDiv" class="input-field col s12">
+                <input disabled placeholder="" id="owner_catalog" type="text">
+                <label for="owner_softgoal">Criador</label>
+            </div>
+            <div id="parentDiv" class="input-field col s12">
+                <input disabled placeholder="" id="authors_catalog" type="text">
+                <label for="authors_catalog">Autores</label>
+            </div>
+            <div id="parentDiv" class="input-field col s12">
+                <textarea disabled placeholder="" id="description_catalog" type="text"> </textarea>
+                <label for="description_catalog">Descricao</label>
+            </div>
+
+            <div id="parentDiv" class="input-field col s12">
+                <input disabled placeholder="" id="appDomain_catalog" type="text">
+                <label for="appDomain_catalog">Domínios de Aplicação</label>
+            </div>
+
+            <div id="parentDiv" class="input-field col s12">
+                <input disabled placeholder="" id="areas_catalog" type="text">
+                <label for="areas_catalog">Áreas</label>
+            </div>
+            <div id="parentDiv" class="input-field col s12">
+                <input disabled placeholder="" id="reference_catalog" type="text">
+                <label for="reference_catalog">Referência</label>
+            </div>
+        </div>
+    </ul>
+    <div id="myDiagramDiv" class="myContainer">
+
+    </div>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+    <script>
+
+        getCatalog();
+
+        function getCatalog() {
+
+            let xhttp = new XMLHttpRequest();
+
+            let url = "http://localhost:8080/catalogs/2/catalog";
+
+            xhttp.onreadystatechange = function () {
+                if (xhttp.readyState == 4) {
+                    let catalog = JSON.parse(xhttp.responseText);
+                    if (catalog !== null) {
+                        fillFieldsCatalog(catalog);
+                    } else {
+                        Materialize.toast("Nenhum catálogo encontrado. Verifique sua string de busca e tente novamente", 3000, "red");
+                    }
+//add info do catalogo nos campos
+                }
+            };
+
+            xhttp.open("GET", url, true);
+            xhttp.send();
+
+        }
+
+        function fillFieldsCatalog(catalogFounded) {
+
+            let inputOwner = document.getElementById("owner_catalog");
+            let inputAuthors = document.getElementById("authors_catalog");
+            let inputReference = document.getElementById("reference_catalog");
+            let inputApplicationDomain = document.getElementById("appDomain_catalog");
+            let inputArea = document.getElementById("areas_catalog");
+            let inputDescription = document.getElementById("description_catalog");
+            
+            inputOwner.value = catalogFounded.owner.name;
+            inputReference.value = catalogFounded.reference;
+            inputDescription.value = catalogFounded.description;
+            
+            let appDomains = "";
+            for(let i = 0; i < catalogFounded.applicationDomainList.length;i ++)
+                appDomains += catalogFounded.applicationDomainList[i].name + ",";
+
+            inputApplicationDomain.value = appDomains;
+
+            let authors = "";
+            for(let i = 0; i < catalogFounded.authors.length;i ++)
+                authors += catalogFounded.authors[i].name + ",";
+            
+            inputAuthors.value = authors;
+
+            let areas = "";
+            for(let i = 0; i < catalogFounded.areasList.length;i ++)
+                areas += catalogFounded.areasList[i].name + ",";
+            
+            inputArea.value = areas;
+
+
+        }
+
+    </script>
+</body>
+
+</html>

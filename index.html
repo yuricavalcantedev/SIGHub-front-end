@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SIGFinder - Home</title>
+  <meta name="description" content="A family tree diagram of British royalty." />
+
+  <meta charset="UTF-8">
+
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+  <link rel="stylesheet" href="css/index.css">
+
+</head>
+
+<body>
+
+  <nav>
+    <div class="nav-wrapper indigo darken-1">
+      <a href="/index.html" class="brand-logo center">SIGFinder</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container background">    
+    <div class="backgroundImage">
+
+    </div>
+
+    <div class="content" style="opacity: 1 !important;"> 
+      <h5><strong>Busque na nossa base os catálogos que você deseja.</strong></h5>
+      <h5><strong>Poupe tempo e esforço criando seu próprio catálogo.</strong></h5>
+      <div class="row" style="width: 50vw;">
+        <form class="col s12">
+          <div class="row">
+            <div id="parentDiv" class="input-field col s12" style="display: inline !important;">
+              <input id="inputSearchText" style="color: black;" placeholder="Ex: Usability OR Security" id="search"
+                type="text" class="validate">
+              <label for="search" style="color:black">Buscar Catálogos</label>
+            </div>
+
+            <a id="btSearchCatalogs" class="waves-effect waves-light blue btn">Buscar</a>
+          </div>
+        </form>
+
+        <div class="resultCatalogs">
+          <ul class="collection with-header titleCatalogsCollection">
+            <h4 id="titleCollection">Catálogos</h4>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+    <a href="pages/new_sig.html" class="waves-effect waves-light green btn btNewCatalog">Criar Catálogo</a>
+ </div>                              
+
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+  <script>
+
+    let btSearchCatalogs = document.getElementById("btSearchCatalogs");
+    btSearchCatalogs.addEventListener("click", getCatalogs);
+
+    function getCatalogs() {
+      let searchText = document.getElementById("inputSearchText").value;
+
+      let xhttp = new XMLHttpRequest();
+      let url = "http://localhost:8080/catalogs";
+
+      xhttp.onreadystatechange = function () {
+        if (xhttp.readyState == 4) {
+          let catalogArrays = JSON.parse(xhttp.responseText);
+          if (catalogArrays !== null && catalogArrays.length > 0) {
+            Materialize.toast(catalogArrays.length + " catálogos encontrados!", 2000, "green");
+            createListCatalogs(catalogArrays);
+          } else {
+            Materialize.toast("Nenhum catálogo encontrado. Verifique sua string de busca e tente novamente", 3000, "red");
+          }
+
+        }
+      };
+
+      if (searchText !== "") {
+        xhttp.open("GET", url + "/" + searchText, true);
+      } else {
+        xhttp.open("GET", url, true);
+      }
+
+      xhttp.send();
+
+    }
+
+    function createListCatalogs(catalogsArray) {
+
+      let collection = document.querySelector(".collection");
+      let header = document.createElement("li");
+      let ulCollection = document.querySelector(".titleCatalogsCollection");
+      let titleCollection = document.createElement("h4");
+      
+      ulCollection.innerHTML = "";
+
+      titleCollection.id = "titleCollection";
+      titleCollection.innerHTML = "Catálogos";
+      ulCollection.appendChild(titleCollection);
+
+
+      for (let i = 0; i < catalogsArray.length; i++) {
+        let item = document.createElement("a");
+        item.classList.add("collection-item");
+        item.innerHTML = catalogsArray[i].id + " - " + "Domínio - " + catalogsArray[i].applicationDomainList[0].name + ". Referência - " + catalogsArray[i].reference;
+        item.href = "/pages/catalog.html";
+          
+        item.addEventListener("click", function(){
+          console.log("aqui"); 
+          localStorage.setItem("idCatalog", catalogsArray[i].id);
+          console.log(localStorage.setItem("idCatalog", catalogsArray[i].id));
+        });
+
+        collection.appendChild(item);
+      
+      }
+    }
+
+ </script>
+</body>
+
+</html>
