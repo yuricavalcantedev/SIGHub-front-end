@@ -34,15 +34,15 @@
     </div>
 
     <div class="content" style="opacity: 1 !important;"> 
-      <h5><strong>Busque na nossa base os cat·logos que vocÍ deseja.</strong></h5>
-      <h5><strong>Poupe tempo e esforÁo criando seu prÛprio cat·logo.</strong></h5>
+      <h5><strong>Busque na nossa base os cat√°logos que voc√™ deseja.</strong></h5>
+      <h5><strong>Poupe tempo e esfor√ßo criando seu pr√≥prio cat√°logo.</strong></h5>
       <div class="row" style="width: 50vw;">
         <form class="col s12">
           <div class="row">
             <div id="parentDiv" class="input-field col s12" style="display: inline !important;">
               <input id="inputSearchText" style="color: black;" placeholder="Ex: Usability OR Security" id="search"
                 type="text" class="validate">
-              <label for="search" style="color:black">Buscar Cat·logos</label>
+              <label for="search" style="color:black">Buscar Cat√°logos</label>
             </div>
 
             <a id="btSearchCatalogs" class="waves-effect waves-light blue btn">Buscar</a>
@@ -51,13 +51,13 @@
 
         <div class="resultCatalogs">
           <ul class="collection with-header titleCatalogsCollection">
-            <h4 id="titleCollection">Cat·logos</h4>
+            <h4 id="titleCollection">Cat√°logos</h4>
           </ul>
         </div>
       </div>
 
     </div>
-    <a href="pages/new_sig.html" class="waves-effect waves-light green btn btNewCatalog">Criar Cat·logo</a>
+    <a href="pages/new_sig.html" class="waves-effect waves-light green btn btNewCatalog">Criar Cat√°logo</a>
  </div>                              
 
   <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
@@ -79,10 +79,10 @@
         if (xhttp.readyState == 4) {
           let catalogArrays = JSON.parse(xhttp.responseText);
           if (catalogArrays !== null && catalogArrays.length > 0) {
-            Materialize.toast(catalogArrays.length + " cat·logos encontrados!", 2000, "green");
+            Materialize.toast(catalogArrays.length + " cat√°logos encontrados!", 2000, "green");
             createListCatalogs(catalogArrays);
           } else {
-            Materialize.toast("Nenhum cat·logo encontrado. Verifique sua string de busca e tente novamente", 3000, "red");
+            Materialize.toast("Nenhum cat√°logo encontrado. Verifique sua string de busca e tente novamente", 3000, "red");
           }
 
         }
@@ -108,14 +108,14 @@
       ulCollection.innerHTML = "";
 
       titleCollection.id = "titleCollection";
-      titleCollection.innerHTML = "Cat·logos";
+      titleCollection.innerHTML = "Cat√°logos";
       ulCollection.appendChild(titleCollection);
 
 
       for (let i = 0; i < catalogsArray.length; i++) {
         let item = document.createElement("a");
         item.classList.add("collection-item");
-        item.innerHTML = catalogsArray[i].id + " - " + "DomÌnio - " + catalogsArray[i].applicationDomainList[0].name + ". ReferÍncia - " + catalogsArray[i].reference;
+        item.innerHTML = catalogsArray[i].id + " - " + "Dom√≠nio - " + catalogsArray[i].applicationDomainList[0].name + ". ReferÔøΩncia - " + catalogsArray[i].reference;
         item.href = "/pages/catalog.html";
           
         item.addEventListener("click", function(){
