@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>SIGFinder - Visualizar Catálogo</title>
+    <title>SIGHub - View Catalog</title>
 
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -25,46 +25,46 @@
 
     <nav>
         <div class="nav-wrapper indigo darken-1">
-            <a href="#" class="brand-logo center">SIGFinder</a>
+            <a href="#" class="brand-logo center">SIGHub</a>
             <div class="col s12 hide-on-med-and-down" style="margin-left: 20px">
                 <a href="/index.html" class="breadcrumb waves-light">Home</a>
-                <a href="#!" class="breadcrumb waves-light">Visualizar Catálogo</a>
+                <a href="#!" class="breadcrumb waves-light">View Catalog</a>
             </div>
         </div>
     </nav>
 
     <ul id="slide-out" class="side-nav fixed mySideNavBar">
 
-        <li><a href="#!">Informações</a></li>
+        <li><a href="#!">Info</a></li>
         <li>
             <div class="divider"></div>
         </li>
         <div class="row">
             <div id="parentDiv" class="input-field col s12">
                 <input disabled placeholder="" id="owner_catalog" type="text">
-                <label for="owner_softgoal">Criador</label>
+                <label for="owner_softgoal" class = "labelInfo">Owner</label>
             </div>
             <div id="parentDiv" class="input-field col s12">
                 <input disabled placeholder="" id="authors_catalog" type="text">
-                <label for="authors_catalog">Autores</label>
+                <label for="authors_catalog" class = "labelInfo">Authors</label>
             </div>
             <div id="parentDiv" class="input-field col s12">
                 <textarea disabled placeholder="" id="description_catalog" type="text"> </textarea>
-                <label for="description_catalog">Descrição</label>
+                <label for="description_catalog" class = "labelInfo">Description</label>
             </div>
 
             <div id="parentDiv" class="input-field col s12">
                 <input disabled placeholder="" id="appDomain_catalog" type="text">
-                <label for="appDomain_catalog">Domínios de Aplicação</label>
+                <label for="appDomain_catalog" class = "labelInfo">Aplications Domains</label>
             </div>
 
             <div id="parentDiv" class="input-field col s12">
                 <input disabled placeholder="" id="areas_catalog" type="text">
-                <label for="areas_catalog">Áreas</label>
+                <label for="areas_catalog" class = "labelInfo">Areas</label>
             </div>
             <div id="parentDiv" class="input-field col s12">
                 <input disabled placeholder="" id="reference_catalog" type="text">
-                <label for="reference_catalog">Referência</label>
+                <label for="reference_catalog" class = "labelInfo">Reference</label>
             </div>
         </div>
     </ul>
@@ -83,7 +83,7 @@
 
             let xhttp = new XMLHttpRequest();
 
-            let url = "http://192.168.1.7:8080/catalogs/2/catalog";
+            let url = "http://localhost:8080/catalogs/2/catalog";
 
             xhttp.onreadystatechange = function () {
                 if (xhttp.readyState == 4) {
@@ -91,7 +91,7 @@
                     if (catalog !== null) {
                         fillFieldsCatalog(catalog);
                     } else {
-                        Materialize.toast("Nenhum catálogo encontrado. Verifique sua string de busca e tente novamente", 3000, "red");
+                        Materialize.toast("None catalog was found. Check your search string and try again.", 3000, "red");
                     }
 //add info do catalogo nos campos
                 }

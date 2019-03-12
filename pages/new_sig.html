@@ -12,7 +12,7 @@
 
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-    <title>SIGFinder - Criar Catálogo</title>
+    <title>SIGHub - New Catalog</title>
 
 </head>
 
@@ -20,17 +20,17 @@
 
     <nav>
         <div class="nav-wrapper indigo darken-1">
-            <a href="#" class="brand-logo center">SIGFinder</a>
+            <a href="#" class="brand-logo center">SIGHub</a>
             <div class="col s12 hide-on-med-and-down" style="margin-left: 20px">
                 <a href="/index.html" class="breadcrumb waves-light">Home</a>
-                <a href="#!" class="breadcrumb waves-light">Criar Catálogo</a>
+                <a href="#!" class="breadcrumb waves-light">New Catalog</a>
             </div>
         </div>
     </nav>
 
     <ul id="slide-out" class="side-nav mySideBar">
         <li>
-            <a href="#!">Novo Softgoal</a>
+            <a href="#!">New Softgoal</a>
         </li>
 
         <div class="row">
@@ -43,16 +43,16 @@
 
                     <div class="input-field col s12">
                         <input placeholder="" id="name_softgoal" type="text" class="validate">
-                        <label for="name_softgoal">Nome *</label>
+                        <label for="name_softgoal">Name *</label>
                     </div>
 
                     <div class="input-field col s12">
                         <select id="selectNFRType">
                             <option value="1" selected>NFR Softgoal</option>
-                            <option value="2">Operacionalização</option>
+                            <option value="2">Operationalization</option>
                             <option value="3">Claim Softgoal</option>
                         </select>
-                        <label>Tipo de Softgoal *</label>
+                        <label>Softgoal Type *</label>
                     </div>
 
                     <div class="input-field col s12">
@@ -61,7 +61,7 @@
                             <option value="1">AND</option>
                             <option value="2">OR</option>
                         </select>
-                        <label>Contribuição</label>
+                        <label>Contribution</label>
                     </div>
 
                     <div class="input-field col s12">
@@ -74,7 +74,7 @@
                             <option value="5">SOME (-)</option>
                             <option value="6">SOME (+)</option>
                         </select>
-                        <label>Tipo de Contribuição (catálogo)</label>
+                        <label>Type of Catalog's contribution(catálogo)</label>
                     </div>
 
                     <div class="input-field col s12">
@@ -87,22 +87,22 @@
                             <option value="5">SATISFICED</option>
                             <option value="6">CONFLICT</option>
                         </select>
-                        <label>Tipo de Avaliação</label>
+                        <label>Avaliation Procedure</label>
                     </div>
 
                     <div class="col s12">
 
-                        <label>Prioridade?</label>
+                        <label>Priority?</label>
                         <br>
                         <input class="with-gap " name="isPriorityGroup" type="radio" id="rbPrioritySim" />
-                        <label for="rbPrioritySim">Sim</label>
+                        <label for="rbPrioritySim">Yes</label>
 
                         <input class="with-gap" name="isPriorityGroup" type="radio" checked="true" id="rbPriorityNao" />
-                        <label for="rbPriorityNao">Não</label>
+                        <label for="rbPriorityNao">No</label>
                     </div>
 
                     <div class="col s12 divButtonCriarSoftgoal">
-                        <a class="waves-effect waves-light green btn buttonCriarSoftgoal">Criar</a>
+                        <a class="waves-effect waves-light green btn buttonCriarSoftgoal">Create</a>
                     </div>
 
                 </div>
@@ -114,8 +114,8 @@
 
         <img src="../imgs/icon_search.png" class="imageNoSoftgoals" alt="">
         <div class="divShowMsgNoSoftgoal">
-            <p>Você ainda não começou a criar seu SIG.</p>
-            <p>Aperte no botão "+" para começar a criar um.</p>
+            <p>You haven't started your SIG yet.</p>
+            <p>Click "+" button to start creating one.</p>
         </div>
         <a id="btStartCatalog" data-activates="slide-out" class="button-collapse btn-floating btn-large waves-effect waves-light green sidenav-trigger show-on-large fabNewSoftgoal">
             <i class="material-icons">add</i>
@@ -129,52 +129,51 @@
 
     <div id="modalCatalog" class="modal">
         <div class="modal-content">
-            <h4>Cadastrar Catálogo</h4>
+            <h4>Send Catalog</h4>
             <div class="divider"></div>
             <div class="row">
                 <form id="formNewCatalog" action="" class="col s12">
                     <div class="input-field col s12">
                         <input placeholder="Ex: João, joao@gmail.com" id="owner_catalog" type="text" class="validate"
                             required="">
-                        <label for="owner_catalog">Criador *</label>
+                        <label for="owner_catalog">Owner *</label>
                     </div>
 
                     <div class="input-field col s12">
                         <input placeholder="Ex: João, joao@gmail.com; Maria, maria@gmail.com;" id="authors_catalog"
                             type="text" class="validate" required="">
-                        <label for="authors_catalog">Lista de Autores *</label>
+                        <label for="authors_catalog">Authors List *</label>
                     </div>
 
                     <div class="input-field col s12">
                         <input placeholder="Ex: Sua referência" id="reference_catalog" type="text" class="validate"
                             required="">
-                        <label for="reference_catalog">Referência *</label>
+                        <label for="reference_catalog">Reference *</label>
                     </div>
 
                     <div class="input-field col s12">
                         <input placeholder="Ex: 2018" id="year_catalog" type="text" class="validate" required="">
-                        <label for="year_catalog">Ano *</label>
+                        <label for="year_catalog">Year *</label>
                     </div>
 
                     <div class="input-field col s12">
                         <div id="chips_applicationDomain_catalog" class="chips validate" required=""></div>
-                        <label for="chips_applicationDomain_catalog">Domínio de Aplicação * (pressione "ENTER" para
-                            cada domínio)</label>
+                        <label for="chips_applicationDomain_catalog">Application Domain * (press "ENTER" for each domain)</label>
                     </div>
 
                     <div class="input-field col s12">
                         <div id="chips_area_catalog" class="chips validate" required=""></div>
-                        <label for="chips_area_catalog">Area * (pressione "ENTER" para cada area)</label>
+                        <label for="chips_area_catalog">Area * (press "ENTER" for each domain)</label>
                     </div>
 
                     <div class="input-field col s12">
                         <textarea id="description_catalog" class="materialize-textarea "></textarea>
-                        <label for="description_catalog">Descrição</label>
+                        <label for="description_catalog">Description</label>
                     </div>
 
                     <div class="modal-footer">
                         <div class="input-field col s12">
-                            <a href="#!" class="modal-action modal-close waves-effect waves-light red btn-flat white-text">Fechar</a>
+                            <a href="#!" class="modal-action modal-close waves-effect waves-light red btn-flat white-text">Close</a>
                             <input type="submit" name="action" class="modal-action waves-effect waves-light green btn-flat white-text"
                                 value="Enviar">
                         </div>
@@ -192,12 +191,12 @@
     <!-- Modal Structure -->
     <div id="modal1" class="modal">
         <div class="modal-content">
-            <h4>Excluir Softgoal</h4>
-            <p id="msgExcluirSoftgoal">Você realmente deseja excluir este softgoal? </p>
+            <h4>Delete Softgoal</h4>
+            <p id="msgExcluirSoftgoal">Do you really want delete this softgoal?</p>
         </div>
         <div class="modal-footer">
-            <a href="#!" class="modal-action modal-close waves-effect waves-light blue btn-flat white-text">Cancelar</a>
-            <a id="btnDeleteSoftgoal" href="#!" class="modal-action modal-close waves-effect waves-light red btn-flat white-text">Excluir</a>
+            <a href="#!" class="modal-action modal-close waves-effect waves-light blue btn-flat white-text">Cancel</a>
+            <a id="btnDeleteSoftgoal" href="#!" class="modal-action modal-close waves-effect waves-light red btn-flat white-text">Delete</a>
         </div>
     </div>
 
@@ -279,7 +278,7 @@
             let keyNodeToDelete = softgoalClickedNow.key;
             myDiagram.model.removeNodeData(softgoalClickedNow);
 
-            Materialize.toast("Softgoal excluído!", 1500, "red");
+            Materialize.toast("Softgoal deleted!", 1500, "red");
         });
 
         let btCreateNewSoftgoal = document.querySelector(".buttonCriarSoftgoal");
@@ -426,7 +425,7 @@
 
         function sendNewCatalog(catalog) {
 
-            let url = "http://192.168.1.7:8080/catalogs"
+            let url = "http://localhost:8080/catalogs"
             let xhttp = new XMLHttpRequest();
 
             catalog = JSON.stringify(catalog);
@@ -458,7 +457,7 @@
             let selectEvaluationProcedure = document.getElementById("selectEvaluationProcedure");
             let radioButtonPriority = document.querySelectorAll(".with-gap");
 
-            //clean the fields TODO
+            //clean the fields - TODO
             inputName.value = "";
             inputParent.value = "";
             selectNFRType.options[0].setAttribute("selected", "true");

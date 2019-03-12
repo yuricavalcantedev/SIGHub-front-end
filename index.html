@@ -3,7 +3,7 @@
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SIGFinder - Home</title>
+  <title>SIGHub - Home</title>
   <meta name="description" content="A family tree diagram of British royalty." />
 
   <meta charset="UTF-8">
@@ -22,7 +22,7 @@
 
   <nav>
     <div class="nav-wrapper indigo darken-1">
-      <a href="/index.html" class="brand-logo center">SIGFinder</a>
+      <a href="/index.html" class="brand-logo center">SIGHub</a>
       <ul id="nav-mobile" class="left hide-on-med-and-down">
       </ul>
     </div>
@@ -34,30 +34,30 @@
     </div>
 
     <div class="content" style="opacity: 1 !important;"> 
-      <h5><strong>Busque na nossa base os catálogos que você deseja.</strong></h5>
-      <h5><strong>Poupe tempo e esforço criando seu próprio catálogo.</strong></h5>
+      <h5><strong>Search in our base catalogs that you want.</strong></h5>
+      <!--<h5><strong>Spare time and effort creating your own catalog.</strong></h5>-->
       <div class="row" style="width: 50vw;">
         <form class="col s12">
           <div class="row">
             <div id="parentDiv" class="input-field col s12" style="display: inline !important;">
               <input id="inputSearchText" style="color: black;" placeholder="Ex: Usability OR Security" id="search"
                 type="text" class="validate">
-              <label for="search" style="color:black">Buscar Catálogos</label>
+              <label for="search" style="color:black">Search Catalogs</label>
             </div>
 
-            <a id="btSearchCatalogs" class="waves-effect waves-light blue btn">Buscar</a>
+            <a id="btSearchCatalogs" class="waves-effect waves-light blue btn">Search</a>
           </div>
         </form>
 
         <div class="resultCatalogs">
           <ul class="collection with-header titleCatalogsCollection">
-            <h4 id="titleCollection">Catálogos</h4>
+            <h4 id="titleCollection">Catalogs</h4>
           </ul>
         </div>
       </div>
 
     </div>
-    <a href="pages/new_sig.html" class="waves-effect waves-light green btn btNewCatalog">Criar Catálogo</a>
+    <a href="pages/new_sig.html" class="waves-effect waves-light green btn btNewCatalog">New Catalog</a>
  </div>                              
 
   <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
@@ -73,17 +73,18 @@
       let searchText = document.getElementById("inputSearchText").value;
 
       let xhttp = new XMLHttpRequest();
-      let url = "http://192.168.1.7:8080/catalogs";
+      let url = "http://localhost:8080/catalogs";
 
       xhttp.onreadystatechange = function () {
         if (xhttp.readyState == 4) {
           let catalogArrays = JSON.parse(xhttp.responseText);
           if (catalogArrays !== null && catalogArrays.length > 0) {
-            Materialize.toast(catalogArrays.length + " catálogos encontrados!", 2000, "green");
-            createListCatalogs(catalogArrays);
+            Materialize.toast(catalogArrays.length + " catalogs founded!", 2000, "green");
           } else {
-            Materialize.toast("Nenhum catálogo encontrado. Verifique sua string de busca e tente novamente", 3000, "red");
+            Materialize.toast("None catalog was found. Check your search string and try again.", 3000, "red");
           }
+
+          createListCatalogs(catalogArrays);
 
         }
       };
@@ -108,14 +109,14 @@
       ulCollection.innerHTML = "";
 
       titleCollection.id = "titleCollection";
-      titleCollection.innerHTML = "Catálogos";
+      titleCollection.innerHTML = "Catalogs";
       ulCollection.appendChild(titleCollection);
 
 
       for (let i = 0; i < catalogsArray.length; i++) {
         let item = document.createElement("a");
         item.classList.add("collection-item");
-        item.innerHTML = catalogsArray[i].id + " - " + "Domínio - " + catalogsArray[i].applicationDomainList[0].name + ". Refer�ncia - " + catalogsArray[i].reference;
+        item.innerHTML = catalogsArray[i].id + " - " + "Domain - " + catalogsArray[i].applicationDomainList[0].name + ". Reference - " + catalogsArray[i].reference;
         item.href = "/pages/catalog.html";
           
         item.addEventListener("click", function(){
@@ -128,6 +129,7 @@
       
       }
     }
+
 
  </script>
 </body>

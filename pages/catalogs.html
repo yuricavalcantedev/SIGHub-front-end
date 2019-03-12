@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>SIGFinder - Procurar Catálogos</title>
+    <title>SIGHub - Search Catalogs</title>
 
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -19,10 +19,10 @@
   <body>
 
     <nav class="nav-wrapper indigo darken-1">
-      <a href="/index.html" class="brand-logo center">SIGFinder</a>
+      <a href="/index.html" class="brand-logo center">SIGHub</a>
       <div class="col s12 hide-on-med-and-down" style="margin-left: 20px">
         <a href="/index.html" class="breadcrumb waves-light">Home</a>
-        <a href="#!" class="breadcrumb waves-light">Procurar Catálogos</a>
+        <a href="#!" class="breadcrumb waves-light">Search Catalogs</a>
       </div>
     </nav>
 
@@ -31,18 +31,18 @@
         <div class="row divSearchBar">
           <div class="input-field col s8">
             <input id="inputSearchText" placeholder="Ex: Usability" type="text" class="validate">
-            <label for="icon_prefix">Procurar</label>
+            <label for="icon_prefix">Search</label>
           </div>
           <br>
           <br>
-          <a id="btSearchCatalogs"class="waves-effect red waves-light btn teal">Procurar</a>
+          <a id="btSearchCatalogs"class="waves-effect red waves-light btn teal">Search</a>
         </div>
       </form>
 
       <div class="row">
           <div class="info col s12">
-              <p>Procure por catálogos nos mais variados domínios de aplicação e áreas.</p>
-              <p>Você poderá visualizar todos os catálogos disponíveis apenas apertando no botão "Procurar".</p>
+              <p>Search for catalogs in various application domains and areas.</p>
+              <p>You will see all the available catalogs just pressing "Search".</p>
             </div>  
       </div>
 
@@ -51,9 +51,6 @@
       </ul>
       
     </div>
-
-
-
 
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <!-- Compiled and minified JavaScript -->
@@ -68,7 +65,7 @@
         let searchText = document.getElementById("inputSearchText").value;
 
         let xhttp = new XMLHttpRequest();
-        let url = "http://192.168.1.7:8080/catalogs";
+        let url = "http://localhost:8080/catalogs";
 
         xhttp.onreadystatechange = function(){
           if(xhttp.readyState == 4){
@@ -101,8 +98,8 @@
         for(let i = 0; i < catalogsArray.length; i++){
           let item = document.createElement("a");
           item.classList.add("collection-item");
-          item.innerHTML = "Id: " + catalogsArray[i].id + ", descrição: " + catalogsArray[i].description + ", referência - " + catalogsArray[i].reference +
-                            ", ano - " + catalogsArray[i].year;
+          item.innerHTML = "Id: " + catalogsArray[i].id + ", description: " + catalogsArray[i].description + ", reference - " + catalogsArray[i].reference +
+                            ", year - " + catalogsArray[i].year;
           item.href = "catalog.html";
           collection.appendChild(item);
         }              

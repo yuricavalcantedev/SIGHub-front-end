@@ -24,3 +24,8 @@
     height: 100vh;
     margin-bottom: 100px !important; 
 }
+
+.labelInfo{
+    size: 15px;
+    color: black;
+}
