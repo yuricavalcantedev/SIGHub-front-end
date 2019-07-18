@@ -20,7 +20,7 @@
 
     <nav>
         <div class="nav-wrapper indigo darken-1">
-            <a href="#" class="brand-logo center">SIGHub</a>
+            <a href="/index.html" class="brand-logo center">SIGHub</a>
             <div class="col s12 hide-on-med-and-down" style="margin-left: 20px">
                 <a href="/index.html" class="breadcrumb waves-light">Home</a>
                 <a href="#!" class="breadcrumb waves-light">New Catalog</a>
@@ -200,20 +200,19 @@
         </div>
     </div>
 
-
     <div class="action-btn fabAddSoftgoal fixed-action-btn">
         <a id="fabAddSoftgoal2" data-activates="slide-out" class="button-collapse sidenav-trigger show-on-large btn-floating btn-large green">
             <i class="large material-icons">add</i>
         </a>
         <ul>
-            <!-- Modal Trigger 
+            <!--Modal Trigger--> 
             <li>
                 <a class="btn-floating blue waves-effect waves-light btn modal-trigger" href="#modalCatalog">
                     <i class="material-icons">cloud_done</i>
                 </a>
             </li>
 
-            -->
+           
             <li>
                 <a class="btn-floating red darken-1 btn modal-trigger" href="#modal1">
                     <i class="material-icons">delete</i>
@@ -363,6 +362,9 @@
 
             let catalog = new Object();
 
+            for(let y = 0; y < nodeDataArray.length; y++)
+                delete nodeDataArray[y].__gohashid;
+
             catalog.id = null;
             catalog.reference = reference;
             catalog.year = year;
@@ -428,7 +430,7 @@
             let url = "http://localhost:8080/catalogs"
             let xhttp = new XMLHttpRequest();
 
-            catalog = JSON.stringify(catalog);
+            //catalog = JSON.stringify(catalog);
 
             xhttp.open("POST", url, true);
             xhttp.setRequestHeader("Content-Type", "application/json");

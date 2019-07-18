@@ -81,7 +81,12 @@ function fillDiagram() {
                         {
                             angle: 90, nodeSpacing: 20, layerSpacing: 40, layerStyle: go.TreeLayout.LayerUniform,
                         }),
-                "undoManager.isEnabled": true
+
+                "undoManager.isEnabled": true,
+                "InitialLayoutCompleted": function(e) {
+                    e.diagram.nodes.each(function(nodeN) { nodeN.deletable = false; nodeN.textEditable = false; });
+                    e.diagram.links.each(function(nodeL) { nodeL.deletable = false; nodeL.textEditable = false; });
+                  },
             });
 
     myDiagram.nodeTemplate =
@@ -97,7 +102,7 @@ function fillDiagram() {
 
                 $(go.Shape, {
                     geometry: go.Geometry.parse('M 25,25 a 25,20 2 0,0 0,40 h 50 a 20,20 1 0,0 0,-40 a 20,10 1 0,0 -15,-10 a 15,15 1 0,0 -35,10 z'),
-                    column: 1, desiredSize: new go.Size(100, 50), fill: "green", alignment: go.Spot.Left
+                    column: 1, desiredSize: new go.Size(100, 50), fill: "green", alignment: go.Spot.Left,
                 },
                     new go.Binding("strokeWidth", "nfrType", isOperationalizationSoftgoal),
                     new go.Binding("strokeDashArray", "nfrType", isClaimSoftgoal)),
