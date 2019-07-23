@@ -64,11 +64,15 @@
   <script>
 
     let btSearchCatalogs = document.getElementById("btSearchCatalogs");
+    let searchInput = document.getElementById("inputSearchText");
+    
     btSearchCatalogs.addEventListener("click", getCatalogs);
+    
+    triggerSearchButton();
 
     function getCatalogs() {
-      let searchText = document.getElementById("inputSearchText").value;
 
+      let searchText = searchInput.value;
       let xhttp = new XMLHttpRequest();
       let url = "http://localhost:8080/catalogs";
 
@@ -76,7 +80,10 @@
         if (xhttp.readyState == 4) {
           let catalogArrays = JSON.parse(xhttp.responseText);
           if (catalogArrays !== null && catalogArrays.length > 0) {
-            Materialize.toast(catalogArrays.length + " catalogs founded!", 2000, "green");
+            if(catalogArrays.length == 1)
+                Materialize.toast(catalogArrays.length + " catalog founded!", 2000, "green");
+              else
+                Materialize.toast(catalogArrays.length + " catalogs founded!", 2000, "green");
           } else {
             Materialize.toast("None catalog was found. Check your search string and try again.", 3000, "red");
           }
@@ -117,9 +124,7 @@
         item.href = "/pages/catalog.html";
           
         item.addEventListener("click", function(){
-          console.log("aqui"); 
-          localStorage.setItem("idCatalog", catalogsArray[i].id);
-          console.log(localStorage.setItem("idCatalog", catalogsArray[i].id));
+          localStorage.setItem("idCatalog", catalogsArray[i].id);          
         });
 
         collection.appendChild(item);
@@ -127,6 +132,18 @@
       }
     }
 
+    function triggerSearchButton(){
+
+      searchInput.addEventListener("keydown", function(event) {
+      // Number 13 is the "Enter" key on the keyboard
+      if (event.keyCode === 13) {
+        // Cancel the default action, if needed
+        event.preventDefault();
+        // Trigger the button element with a click
+        btSearchCatalogs.click();
+      }
+      });
+    }
 
  </script>
 </body>
