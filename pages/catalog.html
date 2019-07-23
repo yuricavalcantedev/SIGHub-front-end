@@ -35,7 +35,7 @@
 
     <ul id="slide-out" class="side-nav fixed mySideNavBar">
 
-        <li><a href="#!">Info</a></li>
+        <p class="catalogInfo">Catalog Info</p>
         <li>
             <div class="divider"></div>
         </li>
@@ -45,25 +45,25 @@
                 <label for="owner_softgoal" class = "labelInfo">Owner</label>
             </div>
             <div id="parentDiv" class="input-field col s12">
-                <input disabled placeholder="" id="authors_catalog" type="text">
+                <textarea class="materialize-textarea" disabled placeholder="" id="authors_catalog" type="text"> </textarea>
                 <label for="authors_catalog" class = "labelInfo">Authors</label>
             </div>
             <div id="parentDiv" class="input-field col s12">
-                <textarea disabled placeholder="" id="description_catalog" type="text"> </textarea>
+                <textarea class="materialize-textarea" disabled placeholder="" id="description_catalog" type="text"> </textarea>
                 <label for="description_catalog" class = "labelInfo">Description</label>
             </div>
 
             <div id="parentDiv" class="input-field col s12">
-                <input disabled placeholder="" id="appDomain_catalog" type="text">
+                <textarea class="materialize-textarea" disabled placeholder="" id="appDomain_catalog" type="text"> </textarea>
                 <label for="appDomain_catalog" class = "labelInfo">Aplications Domains</label>
             </div>
 
             <div id="parentDiv" class="input-field col s12">
-                <input disabled placeholder="" id="areas_catalog" type="text">
+                <textarea class="materialize-textarea" disabled placeholder="" id="areas_catalog" type="text"> </textarea>
                 <label for="areas_catalog" class = "labelInfo">Areas</label>
             </div>
             <div id="parentDiv" class="input-field col s12">
-                <input disabled placeholder="" id="reference_catalog" type="text">
+                <textarea class="materialize-textarea" disabled placeholder="" id="reference_catalog" type="text"> </textarea>
                 <label for="reference_catalog" class = "labelInfo">Reference</label>
             </div>
         </div>
@@ -103,6 +103,8 @@
         }
 
         function fillFieldsCatalog(catalogFounded) {
+            
+            const textAreaSize = 3;
 
             let inputOwner = document.getElementById("owner_catalog");
             let inputAuthors = document.getElementById("authors_catalog");
@@ -111,28 +113,61 @@
             let inputArea = document.getElementById("areas_catalog");
             let inputDescription = document.getElementById("description_catalog");
             
+            let authorsCount = 0;
+            let areasCount = 0;
+            let appDomainsCount = 0;
+
             inputOwner.value = catalogFounded.owner.name;
             inputReference.value = catalogFounded.reference;
             inputDescription.value = catalogFounded.description;
             
             let appDomains = "";
-            for(let i = 0; i < catalogFounded.applicationDomainList.length;i ++)
-                appDomains += catalogFounded.applicationDomainList[i].name + ",";
+            for(let i = 0; i < catalogFounded.applicationDomainList.length; i++){
+                
+                if(i != catalogFounded.authors.length - 1)                
+                    appDomains =  appDomains + catalogFounded.applicationDomainList[i].name + "\n";                    
+                else                
+                    appDomains += catalogFounded.applicationDomainList[i].name;    
+
+                appDomainsCount ++;                
+            }                
 
             inputApplicationDomain.value = appDomains;
 
             let authors = "";
-            for(let i = 0; i < catalogFounded.authors.length;i ++)
-                authors += catalogFounded.authors[i].name + ",";
-            
+            for(let i = 0; i < catalogFounded.authors.length; i++){
+                if(i != catalogFounded.authors.length - 1)                
+                    authors =  authors + catalogFounded.authors[i].name + "\n";                    
+                else                
+                    authors += catalogFounded.authors[i].name;    
+
+                authorsCount ++;
+            }             
+
             inputAuthors.value = authors;
 
             let areas = "";
-            for(let i = 0; i < catalogFounded.areasList.length;i ++)
-                areas += catalogFounded.areasList[i].name + ",";
+            for(let i = 0; i < catalogFounded.areasList.length; i++){
+                if(i != catalogFounded.authors.length - 1)                
+                    areas =  areas + catalogFounded.areasList[i].name + "\n";                    
+                else                
+                    areas += catalogFounded.areasList[i].name;    
+
+                areasCount ++;
+            }
             
             inputArea.value = areas;
+            
+            if(appDomainsCount > textAreaSize)
+                $('#appDomain_catalog').trigger('autoresize');    
 
+            if(authorsCount > textAreaSize)
+                $('#authors_catalog').trigger('autoresize');    
+            
+            if(areasCount > textAreaSize)
+                $('#areas_catalog').trigger('autoresize');    
+
+            $('#description_catalog').trigger('autoresize');
 
         }
 
