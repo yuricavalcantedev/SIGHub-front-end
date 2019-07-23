@@ -2,12 +2,11 @@
     display: flex;
     width: 70vw !important;
     height: 90vh !important;
-    margin-top: 10px;
+    margin-top: 3px;
     margin-left: 250px;
     align-items: baseline;
     flex-wrap: wrap;
 }
-
 
 .divDiagramSIG{
     display: flex;
@@ -21,11 +20,20 @@
 .mySideNavBar{
     margin-top: 65px !important;
     width: 250px !important;
-    height: 100vh;
+    height: 100vh !important;
     margin-bottom: 100px !important; 
 }
 
 .labelInfo{
-    size: 15px;
-    color: black;
+    font-size: 18px !important;
+    color: black !important;
+}
+
+textarea{
+    min-height: 20px !important;
+    height: auto !important;    
+}
+.catalogInfo{
+    font-size: 20px;
+    margin-left: 10px;    
 }
