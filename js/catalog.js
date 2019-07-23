@@ -13,7 +13,7 @@
 
 //e se Deus estiver elevando minha fé?
 //me fazendo andar não pelo que sinto, ou vejo, mas pela fé? É assim que vou agradar a Ele
-//"O justo viverá pela fé". "E Ele não tem prazer nos que retrocedem". "A fé é a certeza das cosias que se esperam e a prova das coisas que não vemos.". "Sem fé, é impossível agradar a Deus".
+//"O justo viverá pela fé". "E Ele não tem prazer nos que retrocedem". "A fé é a certeza das coisas que se esperam e a prova das coisas que não vemos.". "Sem fé, é impossível agradar a Deus".
 
 // here's the family data
 var nodeDataArray = [];
@@ -83,6 +83,8 @@ function fillDiagram() {
                         }),
 
                 "undoManager.isEnabled": true,
+                allowDelete:false,
+                allowMove:false,
                 "InitialLayoutCompleted": function(e) {
                     e.diagram.nodes.each(function(nodeN) { nodeN.deletable = false; nodeN.textEditable = false; });
                     e.diagram.links.each(function(nodeL) { nodeL.deletable = false; nodeL.textEditable = false; });

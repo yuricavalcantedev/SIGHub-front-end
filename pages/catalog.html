@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 
 
-    <script src="/js/go.js"></script>
+    <script src="/js/libs/go.js"></script>
     <script src="/js/commomFunctions.js"></script>
     <script src="/js/catalog.js"></script>
 
@@ -77,13 +77,14 @@
 
     <script>
 
+        let catalogID = localStorage.getItem("idCatalog");
         getCatalog();
 
         function getCatalog() {
 
             let xhttp = new XMLHttpRequest();
 
-            let url = "http://localhost:8080/catalogs/2/catalog";
+            let url = "http://localhost:8080/catalogs/" + catalogID + "/catalog";
 
             xhttp.onreadystatechange = function () {
                 if (xhttp.readyState == 4) {
@@ -93,7 +94,6 @@
                     } else {
                         Materialize.toast("None catalog was found. Check your search string and try again.", 3000, "red");
                     }
-//add info do catalogo nos campos
                 }
             };
 
